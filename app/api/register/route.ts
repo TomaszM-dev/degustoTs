@@ -3,8 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { NextApiRequest } from "next";
 import Stripe from "stripe";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/utils/prisma";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();

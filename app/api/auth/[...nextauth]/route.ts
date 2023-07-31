@@ -8,6 +8,7 @@ import bcrypt from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import Stripe from "stripe";
 import { prisma } from "@/utils/prisma";
+import { NextResponse } from "next/server";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -22,7 +23,6 @@ export const authOptions: NextAuthOptions = {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        name: { label: "name", type: "text", placeholder: "name" },
         email: { label: "email", type: "text", placeholder: "email" },
         password: { label: "Password", type: "password" },
       },
@@ -44,13 +44,13 @@ export const authOptions: NextAuthOptions = {
             if (isPasswordCorrect) {
               return user;
             } else {
-              throw new Error("Wrong credentials");
+              return null;
             }
           } else {
-            throw new Error("User not found");
+            return null;
           }
         } catch {
-          throw new Error("es");
+          return null;
         }
       },
     }),
@@ -70,6 +70,32 @@ export const authOptions: NextAuthOptions = {
         where: { id: user.id },
         data: { stripeCustomerId: costumer.id },
       });
+    },
+  },
+  callbacks: {
+    async jwt({ token, user, session }) {
+      console.log("jwt callback", { token, user, session });
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+          stripeCustomerId: user.stripeCustomerId,
+        };
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      console.log("session callback", { session, token, user });
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          stripeCustomerId: token.stripeCustomerId,
+        },
+      };
+
+      return session;
     },
   },
   session: {
