@@ -12,7 +12,7 @@ module.exports = {
       lightPurple: "#7d87fc",
       blue: "#769efc",
       background: "#0c0c0c",
-      secondary: "#bbb",
+      secondary: "#1B1B1B",
       tertirary: "#171717",
       black: "#000",
       gold: "#ffd700",

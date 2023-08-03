@@ -73,3 +73,7 @@ a {
   box-shadow: 0px 4px 18px rgba(135, 103, 254, 0.25);
   border-radius: 14px;
 }
+
+.triangle {
+  clip-path: polygon(68% 0, 0 0, 0 100%);
+}
