@@ -31,6 +31,7 @@ a {
 
 .container {
   max-width: 1366px;
+
   margin: auto;
   padding: 0 6rem;
   display: flex;
@@ -62,4 +63,13 @@ a {
     rgba(135, 119, 254, 1) 46%,
     rgba(106, 196, 255, 1) 99%
   );
+}
+
+.blur {
+  backdrop-filter: blur(10px);
+}
+
+.shadow {
+  box-shadow: 0px 4px 18px rgba(135, 103, 254, 0.25);
+  border-radius: 14px;
 }

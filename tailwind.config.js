@@ -16,7 +16,7 @@ module.exports = {
       tertirary: "#171717",
       black: "#000",
       gold: "#ffd700",
-      secondarytext: "#9f9e9e",
+      secondarytext: "#9D9D9D",
       white: "#fff",
       red: "#ff0000",
     },
