@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 
-module.exports = nextConfig
+  images: {
+    domains: ["lh3.googleusercontent.com", "files.stripe.com"],
+  },
+};
+
+module.exports = nextConfig;

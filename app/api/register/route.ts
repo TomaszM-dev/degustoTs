@@ -7,9 +7,9 @@ import { prisma } from "@/utils/prisma";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { name, email, password } = body;
+  const { name, email, password, image } = body;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !image) {
     return new NextResponse("MIssing name");
   }
   if (email == null) throw new Error("Username undefined");
@@ -35,6 +35,7 @@ export async function POST(request: NextRequest) {
       name,
       email,
       hashedPassword,
+      image,
     },
   });
 

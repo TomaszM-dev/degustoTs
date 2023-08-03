@@ -1,8 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 
+  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
+*/
+
+/* Tailwind Styles */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
 body {
-  color: white;
-  background: black;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: #0c0c0c;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1366px;
+  margin: auto;
+  padding: 0 6rem;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 650px) {
+    padding: 0 3rem;
+  }
+}
+
+.gradientText {
+  background: linear-gradient(
+    0deg,
+    rgba(141, 95, 255, 1) 0%,
+    rgba(135, 119, 254, 1) 46%,
+    rgba(106, 196, 255, 1) 99%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradientBg {
+  background: linear-gradient(
+    90deg,
+    rgba(141, 95, 255, 1) 0%,
+    rgba(135, 119, 254, 1) 46%,
+    rgba(106, 196, 255, 1) 99%
+  );
 }

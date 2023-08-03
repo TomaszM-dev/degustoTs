@@ -8,6 +8,7 @@ import { ChangeEvent, useState } from "react";
 import spinner from "public/loadingSpinner.svg";
 import Image from "next/image";
 import Link from "next/link";
+import userImg from "public/user.png";
 
 export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +19,7 @@ export default function Register() {
     const email = e.target[0].value;
     const name = e.target[1].value;
     const password = e.target[2].value;
+    const image = userImg.src;
 
     try {
       setIsLoading(true);
@@ -31,6 +33,7 @@ export default function Register() {
           name,
           email,
           password,
+          image,
         }),
       });
       console.log(res.status);
