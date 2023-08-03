@@ -24,23 +24,24 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <div className="flex-1 relative  flex items-center justify-center mb-40">
+      <div className="flex-1 relative  flex items-center justify-center mb-40  w-full h-full shrink-0">
+        {/* <div className="absolute top-0 left-0 w-full h-full"></div> */}
         <Image
-          className="absolute w-[20rem] h-[16rem] rounded-2xl top-[8rem] right-[5rem] "
+          className="absolute w-[20rem] h-[16rem] rounded-2xl top-[11rem] right-[5rem] "
           src={gradientMain}
           alt="gradient"
           width={300}
           height={300}
         ></Image>
         <Image
-          className="relative h-[24rem] w-[40rem] "
+          className="relative h-[24rem] w-[45rem] "
           alt="vr girl "
           width={700}
           height={700}
           src={heroGirl}
         ></Image>
-        <div className="absolute w-[20rem] h-[4.6rem] bottom-[0rem] right-[5rem] rounded-2xl blur"></div>
-        <div className="absolute bottom-0 mb-4 ml-10 text-[1.6rem] font-[300] flex items-center justify-center">
+        <div className="absolute w-[20rem] h-[4.6rem] bottom-[3rem] right-[5rem] rounded-2xl blur"></div>
+        <div className="absolute bottom-0 mb-16 ml-10 text-[1.6rem] font-[300] flex items-center justify-center">
           <h3>Explore our Store</h3>
         </div>
       </div>

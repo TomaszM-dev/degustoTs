@@ -11,7 +11,8 @@ import Image from "next/image";
 const Nav = ({ user }: Session) => {
   const pathname = usePathname();
   const session = useSession();
-  console.log(pathname);
+
+  console.log(user);
 
   return (
     <div className="flex items-center mt-10 justify-between ">
