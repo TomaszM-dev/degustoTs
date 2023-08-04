@@ -8,16 +8,18 @@ import { FaUserAlt } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-const Nav = ({ user }: Session) => {
+const Nav = ({ user }) => {
   const pathname = usePathname();
   const session = useSession();
 
-  console.log(user);
+  // console.log(user);
 
   return (
-    <div className="flex items-center mt-10 justify-between ">
-      <h1 className="gradientText text-[2rem] font-[400] ">
-        <Link href="/">DegustoVR</Link>
+    <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 mx-auto border-b-2 border-purple bg-main">
+      <h1 className="gradientText text-[2rem] font-[400]  ">
+        <Link href="/" className="">
+          DegustoVR
+        </Link>
       </h1>
       <div className="flex items-center gap-7 text-[1.2rem]">
         <Link

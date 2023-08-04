@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import servImg from "public/servicesGirl.png";
+import ServicesData from "@/Data/ServicesData";
 const Services = () => {
+  const data = ServicesData();
   return (
-    <div className="flex flex-col gap-5  items-center">
+    <div className="flex flex-col gap-5 mt-20 items-center">
       <h2 className="text-center text-[3.4rem] gradientText font-[500]">
         Our Services
       </h2>
@@ -12,25 +14,29 @@ const Services = () => {
         ducimus saepe magni nisi voluptate beatae perspiciatis placeat illum est
         dicta.
       </p>
-      <div className="flex flex-col items-end relative  w-[72%] h-[30rem]  mt-10 ">
-        <div className="flex justify-between w-full h-full relative gap-[20rem]">
-          <div className="flex flex-col h-[100%] justify-between w-fit items-center">
-            <h2 className="mt-[5.3rem] gradientBg px-9 py-4 rounded-lg z-10 ">
-              Virtual Reality
-            </h2>
-            <h2 className="gradientBg px-9 py-4 rounded-lg mb-10 ml-14 z-10">
-              Amazing Exp
-            </h2>
-          </div>
-          <div className="flex flex-col h-[100%] justify-between w-fit items-center">
-            <h2 className="mt-[5.3rem] gradientBg px-9 py-4 rounded-lg z-10 mr-10 ">
-              Professional
-            </h2>
-            <h2 className="gradientBg px-9 py-4 rounded-lg mb-20 ml-12 z-10">
-              Explore VR
-            </h2>
-          </div>
-        </div>
+      <div className="flex flex-col items-end relative  w-[72%] mr-20 h-[30rem]  mt-10 ">
+        {data.map((item) => {
+          return (
+            <div className="flex justify-between w-full h-full relative gap-[20rem]">
+              <div className="flex flex-col h-[100%] justify-between w-fit items-center">
+                <h2 className="mt-[5.3rem] gradientBg px-9 py-4 rounded-lg z-10 ">
+                  {item.info1}
+                </h2>
+                <h2 className="gradientBg px-9 py-4 rounded-lg mb-10 ml-14 z-10">
+                  {item.info2}
+                </h2>
+              </div>
+              <div className="flex flex-col h-[100%] justify-between w-fit items-center">
+                <h2 className="mt-[5.3rem] gradientBg px-9 py-4 rounded-lg z-10 mr-10 ">
+                  {item.info3}
+                </h2>
+                <h2 className="gradientBg px-9 py-4 rounded-lg mb-20 ml-12 z-10">
+                  {item.info4}
+                </h2>
+              </div>
+            </div>
+          );
+        })}
 
         <Image
           className="top-[50%] absolute left-[50%] translate-x-[-50%] translate-y-[-50%]"

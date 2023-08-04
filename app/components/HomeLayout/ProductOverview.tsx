@@ -12,10 +12,17 @@ import {
 const ProductOverview = () => {
   return (
     <div className="mt-20 w-[100%] mx-auto ">
-      <h2 className="text-[3rem] gradientText">Our Best Products</h2>
-      <div className="flex items-center mt-28">
+      <h2 className="text-[3rem] gradientText text-center">
+        Our Best Products
+      </h2>
+      <p className="text-[1.2rem] mt-3 text-secondarytext text-center mx-auto mb-20 w-[70%]">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+        facere eius odio eaque iusto laboriosam corporis temporibus accusantium
+        ex delectus!
+      </p>
+      <div className="flex items-center mt-16">
         <AiOutlineArrowLeft className="w-[15%] text-[2.3rem]" />
-        <div className="bg-secondary w-[70%] mx-auto pb-5  rounded-lg">
+        <div className="shadow w-[70%] mx-auto pb-5  rounded-lg">
           <div className=" flex gap-10">
             <div className="flex flex-col relative">
               <div className="triangle gradientBg w-[100%] h-[70%] rounded-lg absolute"></div>

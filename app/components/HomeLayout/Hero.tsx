@@ -5,7 +5,7 @@ import heroGirl from "public/heroGirl.png";
 
 const Hero = () => {
   return (
-    <div className="flex items-center w-full mt-40  h-[30rem] justify-center gap-10">
+    <div className="flex items-center w-full mt-60  h-[30rem] justify-center gap-10">
       <div className="flex-1 flex flex-col gap-8 self-start">
         <h1 className="text-[3.3rem] font-[600] leading-[3.9rem]">
           Explore the best VR{" "}
