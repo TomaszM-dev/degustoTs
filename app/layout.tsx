@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Nav from "./components/Nav";
 import { Roboto, Lobster_Two } from "next/font/google";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -33,6 +34,7 @@ export default async function RootLayout({
           <div className="container">
             <Nav user={session?.user} expires={session?.expires as string} />
             {children}
+            <Footer />
           </div>
         </body>
       </AuthProvider>

@@ -35,6 +35,10 @@ module.exports = {
           "50%": { transform: "translateY(15px)" },
         },
       },
+      gridTemplateColumns: {
+        fluid: "repeat(auto-fit,minmax(16rem,1fr))",
+        bestS: "repeat(auto-fit,minmax(14rem,1fr))",
+      },
     },
   },
   plugins: [],
