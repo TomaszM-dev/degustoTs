@@ -106,7 +106,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
               <p className="text-[1.9rem] self-center gradientText font-[500]">
                 120$
               </p>
-              <AddCart />
+              <AddCart {...searchParams} />
             </div>
           </div>
         </div>
