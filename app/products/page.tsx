@@ -31,13 +31,10 @@ const getProducts = async () => {
 
 const Products = async () => {
   const products = await getProducts();
-  console.log(products);
 
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
-
   const bestSellers = bestSellersAcc.concat(bestSellersVr);
-  console.log(bestSellers);
 
   return (
     <div className="mt-[12rem] flex flex-col">
@@ -70,8 +67,6 @@ const Products = async () => {
         </h3>
         <div className="mt-16 grid grid-cols-bestS gap-7  p-1">
           {bestSellers.map((item) => {
-            console.log(item);
-
             const { overview, paramether } = item.metadata;
             const name = item.name;
             const unit_amount = item.unit_amount;

@@ -2,18 +2,18 @@
 import React from "react";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
-
+import { useCartStore } from "@/store";
 import { AiFillShopping } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import Cart from "./Cart";
 
 const Nav = ({ user }) => {
+  const cartStore = useCartStore();
   const pathname = usePathname();
-  const session = useSession();
 
-  // console.log(user);
-
+  console.log(cartStore.cart);
   return (
     <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 mx-auto border-b-2 border-purple bg-main">
       <h1 className="gradientText text-[2rem] font-[400]  ">
@@ -37,8 +37,15 @@ const Nav = ({ user }) => {
         >
           Products
         </Link>
-
-        <AiFillShopping className="text-[2.3rem] mb-3" />
+        <div
+          onClick={() => cartStore.toggleCart()}
+          className="flex items-center text-3xl relative cursor-pointer "
+        >
+          <AiFillShopping className="text-[2.3rem] mb-3 cursor-pointer" />
+          <span className="gradientBg text-white text-sm font-[500] w-5 h-5 rounded-full absolute top-[-0.1rem] right-[-0.3rem] items-center flex justify-center ">
+            {cartStore.cart.length}
+          </span>
+        </div>
         {!user && (
           <Link
             className="gradientBg px-6 py-2 rounded-lg  mb-4"
@@ -66,28 +73,7 @@ const Nav = ({ user }) => {
         )}
       </div>
 
-      {/* <ul className="flex gap-5 mb-10 p-10">
-        <Link href="/dashboard">Dashboard</Link>
-        {!user && (
-          <li className="">
-            <Link href="/dashboard/login">Sign In</Link>
-          </li>
-        )}
-        {user && (
-          <div className="flex items-center gap-10">
-            <li className="">
-              <button onClick={() => signOut()}>Sign Out</button>
-            </li>
-          </div>
-        )}
-      </ul>
-      <li className=" p-10">
-        SERVER SESSION USER: {user?.name}  => {user?.id}
-      </li>
-      <li className=" p-10">
-        CLIENT USER: {session.data?.user?.name}  => {session.data?.user?.id}
-      </li>
-      <div></div> */}
+      {cartStore.isOpen && <Cart />}
     </div>
   );
 };
