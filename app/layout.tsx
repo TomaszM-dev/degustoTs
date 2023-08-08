@@ -31,11 +31,13 @@ export default async function RootLayout({
     <html lang="en">
       <AuthProvider>
         <body className={`${roboto.className}`}>
-          <div className="container">
-            <Nav user={session?.user} expires={session?.expires as string} />
-            {children}
-            <Footer />
-          </div>
+          <Hydrate>
+            <div className="container">
+              <Nav user={session?.user} expires={session?.expires as string} />
+              {children}
+              <Footer />
+            </div>
+          </Hydrate>
         </body>
       </AuthProvider>
     </html>

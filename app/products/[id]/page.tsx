@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { LayoutGroup } from "framer-motion";
 import { useState } from "react";
 import { SearchParamsType } from "@/types/SearchParamsType";
+import AddCart from "../AddCart";
 
 const Product = ({ searchParams }: SearchParamsType) => {
   const accordion = [
@@ -105,9 +106,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
               <p className="text-[1.9rem] self-center gradientText font-[500]">
                 120$
               </p>
-              <button className="  gradientBg w-[90%]  py-3 rounded-lg mt-8">
-                See More
-              </button>
+              <AddCart />
             </div>
           </div>
         </div>
