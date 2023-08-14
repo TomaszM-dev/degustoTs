@@ -1,10 +1,15 @@
-import Stripe from "stripe";
+import bcrypt from "bcrypt";
+import { PrismaClient } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
 import { NextApiRequest, NextApiResponse } from "next";
-import { authOptions } from "./auth/[...nextauth]";
-import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
+import Stripe from "stripe";
+import { getServerSession, NextAuthOptions } from "next-auth";
+import { prisma } from "@/utils/prisma";
 import { AddCartType } from "@/types/AddCartType";
-import { prisma } from "@/util/prisma";
-import AddCart from "@/app/product/AddCart";
+import { useSession } from "next-auth/react";
+import NextAuth from "next-auth/next";
+import { request } from "http";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2022-11-15",
@@ -17,19 +22,15 @@ const calcOrderAmount = (items: AddCartType[]) => {
   return totalPrice;
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  //Get user
-  const userSession = await getServerSession(req, res, authOptions);
+export async function POST(request: NextRequest) {
+  const body = await request.json();
+  const { items, payment_intent_id } = body;
+  console.log(items, payment_intent_id);
+
+  const userSession = await getServerSession(authOptions);
   if (!userSession?.user) {
-    res.status(403).json({ message: "Not logged in" });
     return;
   }
-  //Extract the data from the body
-  const { items, payment_intent_id } = req.body;
-
   const orderData = {
     user: { connect: { id: userSession.user?.id } },
     amount: calcOrderAmount(items),
@@ -47,7 +48,6 @@ export default async function handler(
     },
   };
 
-  // check if payment id exists
   if (payment_intent_id) {
     const current_intent = await stripe.paymentIntents.retrieve(
       payment_intent_id
@@ -62,7 +62,7 @@ export default async function handler(
         include: { products: true },
       });
       if (!existing_order) {
-        res.status(400).json({ message: "Invalid" });
+        NextResponse.json({ message: "Invalid" });
       }
 
       const updated_order = await prisma.order.update({
@@ -81,7 +81,7 @@ export default async function handler(
           },
         },
       });
-      res.status(200).json({ paymentIntent: updated_intent });
+      NextResponse.json({ paymentIntent: updated_intent });
       return;
     }
   } else {
@@ -94,6 +94,7 @@ export default async function handler(
     const newOrder = await prisma.order.create({
       data: orderData,
     });
-    res.status(200).json({ paymentIntent });
+
+    return NextResponse.json({ paymentIntent });
   }
 }

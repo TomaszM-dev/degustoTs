@@ -9,12 +9,21 @@ import {
 } from "react-icons/ai";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { LayoutGroup } from "framer-motion";
 import { useState } from "react";
 import { SearchParamsType } from "@/types/SearchParamsType";
 import AddCart from "../AddCart";
+import { useCartStore } from "@/store";
+import formatPrice from "@/utils/priceFormat";
+import CartIcon from "@/app/components/CartIcon";
 
 const Product = ({ searchParams }: SearchParamsType) => {
+  const cartStore = useCartStore();
+  const products = cartStore.cartAll;
+
+  const bestSellersVr = products.slice(0, 2);
+  const bestSellersAcc = products.slice(4, 6);
+  const bestSellers = bestSellersAcc.concat(bestSellersVr);
+
   const accordion = [
     {
       headline: "Overview",
@@ -104,7 +113,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
             </div>
             <div className="mt-10 flex flex-col  w-[80%] mx-auto items-center">
               <p className="text-[1.9rem] self-center gradientText font-[500]">
-                120$
+                {formatPrice(searchParams.unit_amount)}
               </p>
               <AddCart {...searchParams} />
             </div>
@@ -117,56 +126,46 @@ const Product = ({ searchParams }: SearchParamsType) => {
           Fits <span className="gradientText"> well with</span>
         </h3>
         <div className="mt-16 grid grid-cols-bestS gap-7  p-1">
-          return (
-          <div className="shadow p-3 px-7 flex flex-col gap-2 items-center">
-            <AiFillShopping className="text-[2.1rem] mb-5 self-end" />
-            <Image
-              className="w-80 "
-              src={searchParams.image}
-              width={400}
-              height={400}
-              alt="product detail"
-            ></Image>
-            <h2 className=" text-[1.3rem] font-[500] uppercase mt-5">
-              {searchParams.name}
-            </h2>
-            <p className="gradientText text-[1.6rem]">
-              {searchParams.unit_amount}
-            </p>
-          </div>
-          );
-          {/* <div className="shadow p-3 px-7 flex flex-col gap-2 items-center">
-            <AiFillShopping className="text-[2.1rem] mb-5 self-end" />
-            <Image className="w-80" src={gogle}></Image>
-            <h2 className="text-[1.3rem] font-[500] uppercase mt-5">
-              Vr google 350 gd
-            </h2>
-            <p className="gradientText text-[1.6rem]">250$ </p>
-          </div>
-          <div className="shadow p-3 px-7 flex flex-col gap-2 items-center">
-            <AiFillShopping className="text-[2.1rem] mb-5 self-end" />
-            <Image className="w-80 " src={gogle}></Image>
-            <h2 className=" text-[1.3rem] font-[500] uppercase mt-5">
-              Vr google 350 gd
-            </h2>
-            <p className="gradientText text-[1.6rem]">250$ </p>
-          </div>
-          <div className="shadow p-3 px-7 flex flex-col gap-2 items-center">
-            <AiFillShopping className="text-[2.1rem] mb-5 self-end" />
-            <Image className="w-80" src={gogle}></Image>
-            <h2 className="text-[1.3rem] font-[500] uppercase mt-5">
-              Vr google 350 gd
-            </h2>
-            <p className="gradientText text-[1.6rem]">250$ </p>
-          </div>
-          <div className="shadow p-3 px-7 flex flex-col gap-2 items-center">
-            <AiFillShopping className="text-[2.1rem] mb-5 self-end" />
-            <Image className="w-80" src={gogle}></Image>
-            <h2 className="text-[1.3rem] font-[500] uppercase mt-5">
-              Vr google 350 gd
-            </h2>
-            <p className="gradientText text-[1.6rem]">250$ </p>
-          </div> */}
+          {bestSellers.map((item) => {
+            const { overview, paramether } = item.metadata;
+            const name = item.name;
+            const unit_amount = item.unit_amount;
+            const description = item.description;
+            const image = item.image;
+            const id = item.id;
+            return (
+              <Link
+                href={{
+                  pathname: `/products/${item.id}`,
+                  query: {
+                    id,
+                    name,
+                    image,
+                    unit_amount,
+                    overview,
+                    paramether,
+                    description,
+                  },
+                }}
+                className="shadow p-3 px-7 flex flex-col gap-2 items-center "
+              >
+                <AiFillShopping className="text-[2.1rem] mb-5 self-end" />
+                <Image
+                  className="w-40 h-40 "
+                  src={item.image}
+                  width={400}
+                  height={400}
+                  alt="product"
+                ></Image>
+                <h2 className=" text-[1.3rem] font-[500] uppercase mt-5 text-center">
+                  {item.name}
+                </h2>
+                <p className="gradientText text-[1.6rem]">
+                  {formatPrice(item.unit_amount as number)}
+                </p>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

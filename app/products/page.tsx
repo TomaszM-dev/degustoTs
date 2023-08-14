@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import gogle from "public/product.png";
 import Image from "next/image";
@@ -6,31 +7,12 @@ import Link from "next/link";
 import Stripe from "stripe";
 import Product from "../components/Product";
 import formatPrice from "@/utils/priceFormat";
+import { useCartStore } from "@/store";
 
-const getProducts = async () => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
-    apiVersion: "2022-11-15",
-  });
-  const products = await stripe.products.list();
-  const productWithPrices = await Promise.all(
-    products.data.map(async (product) => {
-      const prices = await stripe.prices.list({ product: product.id });
-      return {
-        id: product.id,
-        description: product.description,
-        name: product.name,
-        unit_amount: prices.data[0].unit_amount,
-        image: product.images[0],
-        currency: prices.data[0].currency,
-        metadata: product.metadata,
-      };
-    })
-  );
-  return productWithPrices;
-};
-
-const Products = async () => {
-  const products = await getProducts();
+const Products = () => {
+  const cartStore = useCartStore();
+  console.log(cartStore.cart);
+  const products = cartStore.cartAll;
 
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
@@ -72,11 +54,13 @@ const Products = async () => {
             const unit_amount = item.unit_amount;
             const description = item.description;
             const image = item.image;
+            const id = item.id;
             return (
               <Link
                 href={{
                   pathname: `/products/${item.id}`,
                   query: {
+                    id,
                     name,
                     image,
                     unit_amount,
