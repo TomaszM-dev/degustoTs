@@ -16,15 +16,15 @@ const Dashboard = () => {
   console.log(session);
 
   return (
-    <>
+    <div className="w-full  ">
       {session.status === "authenticated" ? (
-        <div>
+        <div className="">
           <button onClick={() => signOut()}>sign out</button>
         </div>
       ) : (
         <LoadingSpinner />
       )}
-    </>
+    </div>
   );
 };
 

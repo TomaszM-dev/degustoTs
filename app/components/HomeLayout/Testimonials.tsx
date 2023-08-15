@@ -10,7 +10,7 @@ import { AiFillStar } from "react-icons/ai";
 const Testimonials = () => {
   const data = TestimonialsData1();
   const data2 = TestimonialsData2();
-  console.log(data);
+
   return (
     <div className="my-20 h-screen w-full">
       <h2 className="text-center text-[3rem] font-[600]">

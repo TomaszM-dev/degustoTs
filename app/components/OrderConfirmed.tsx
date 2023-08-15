@@ -13,6 +13,10 @@ export default function OrderConfirmed() {
   useEffect(() => {
     cartStore.setPaymentIntent("");
     cartStore.clearCart();
+
+    setTimeout(() => {
+      cartStore.setCheckout("cart");
+    }, 6000);
   }, []);
 
   return (
