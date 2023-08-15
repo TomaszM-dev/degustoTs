@@ -16,10 +16,10 @@ const Hero = () => {
           quis earum quia sunt sint recusandae qui impedit ab consequatur illum!
         </p>
         <div className="flex items-center gap-6 mt-10">
-          <button className="  gradientBg px-9 py-4 rounded-lg mt-8">
+          <button className="  btn gradientBg text-white px-9 py-4 rounded-lg mt-8">
             Order Now
           </button>
-          <button className=" shadow px-9 py-4 rounded-lg mt-8 border-[1px] border-purple">
+          <button className=" btn bg-main hover:bg-main hover:border-purple border-purple text-white px-9 py-4 rounded-lg mt-8 border-[1px] ">
             More Details
           </button>
         </div>

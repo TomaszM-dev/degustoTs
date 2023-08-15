@@ -47,7 +47,7 @@ const Features = () => {
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus
             veniam modi beatae debitis quas itaque at commodi vitae illo alias.
           </p>
-          <button className=" gradientBg px-9 py-4 rounded-lg mt-4 w-fit">
+          <button className=" btn text-white gradientBg px-9 py-4 rounded-lg mt-4 w-fit">
             Go Shopping
           </button>
         </div>

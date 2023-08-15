@@ -64,21 +64,47 @@ const Nav = ({ user }) => {
           </Link>
         )}
         {user && (
-          <>
+          <div className="dropdown dropdown-end cursor-pointer ">
             <Image
               alt="profile img"
               width={40}
               height={40}
               src={user?.image}
               className="rounded-full mb-3 "
+              tabIndex={0}
             ></Image>
-            <button
-              className="gradientBg px-6 py-2  mb-5  rounded-lg "
-              onClick={() => signOut()}
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu p-5 shadow space-y-3 z-10 text-[1.1rem]  w-72 mt-2 mr-[-3rem]"
             >
-              Sign Out
-            </button>
-          </>
+              <li className=" ">
+                <Link
+                  href="/dashboard "
+                  className="  py-4"
+                  onClick={() => {
+                    if (document.activeElement instanceof HTMLElement) {
+                      document.activeElement.blur();
+                    }
+                  }}
+                >
+                  Orders
+                </Link>
+              </li>
+              <li>
+                <button
+                  className="py-4"
+                  onClick={() => {
+                    signOut();
+                    if (document.activeElement instanceof HTMLElement) {
+                      document.activeElement.blur();
+                    }
+                  }}
+                >
+                  Sign Out
+                </button>
+              </li>
+            </ul>
+          </div>
         )}
       </div>
       <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
