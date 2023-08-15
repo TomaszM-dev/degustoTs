@@ -8,6 +8,7 @@ import { easeIn, easeInOut, motion } from "framer-motion";
 import basket from "public/basket.png";
 import { AnimatePresence } from "framer-motion";
 import Checkout from "./Checkout";
+import OrderConfirmed from "./OrderConfirmed";
 
 const Cart = () => {
   const cartStore = useCartStore();
@@ -39,10 +40,10 @@ const Cart = () => {
         )}
         {cartStore.onCheckout === "checkout" && (
           <h1
-            onClick={() => cartStore.toggleCart()}
+            onClick={() => cartStore.setCheckout("cart")}
             className="text-[1.3rem]  mt-16 self-start px-10 mb-5 cursor-pointer"
           >
-            Back to store 🏃‍♂️
+            Back to Cart 🏃‍♂️
           </h1>
         )}
 
@@ -88,7 +89,7 @@ const Cart = () => {
           </>
         )}
         {cartStore.onCheckout === "checkout" && <Checkout />}
-        {/* {cartStore.onCheckout === "success" && <OrderConfirmed />} */}
+        {cartStore.onCheckout === "success" && <OrderConfirmed />}
 
         {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" ? (
           <motion.div

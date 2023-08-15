@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import CheckoutForm from "./CheckoutForm";
 import { NextResponse } from "next/server";
+import OrderAnimation from "./OrderAnimation";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
@@ -19,28 +20,23 @@ export default function Checkout() {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    try {
-      fetch("/api/paymentIntent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items: cartStore.cart,
-          payment_intent_id: cartStore.paymentIntent,
-        }),
+    fetch("/api/paymentIntent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cartStore.cart,
+        payment_intent_id: cartStore.paymentIntent,
+      }),
+    })
+      .then((res) => {
+        return res.json();
       })
-        .then((res) => {
-          console.log(res.status);
-          return res.json();
-        })
-        .then((data) => {
-          setClientSecret(data.paymentIntent.client_secret);
-          cartStore.setPaymentIntent(data.paymentIntent.id);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+      .then((data) => {
+        setClientSecret(data.paymentIntent.client_secret);
+        cartStore.setPaymentIntent(data.paymentIntent.id);
+      });
   }, []);
 
   const options: StripeElementsOptions = {
@@ -52,8 +48,8 @@ export default function Checkout() {
   };
 
   return (
-    <div>
-      {/* {!clientSecret && <OrderAnimation></OrderAnimation>} */}
+    <div className="w-full px-10">
+      {!clientSecret && <OrderAnimation></OrderAnimation>}
       {clientSecret && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Elements options={options} stripe={stripePromise}>

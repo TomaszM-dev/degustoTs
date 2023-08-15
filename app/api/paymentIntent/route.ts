@@ -1,15 +1,9 @@
-import bcrypt from "bcrypt";
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { NextApiRequest, NextApiResponse } from "next";
 import { authOptions } from "../auth/[...nextauth]/route";
 import Stripe from "stripe";
 import { getServerSession, NextAuthOptions } from "next-auth";
 import { prisma } from "@/utils/prisma";
 import { AddCartType } from "@/types/AddCartType";
-import { useSession } from "next-auth/react";
-import NextAuth from "next-auth/next";
-import { request } from "http";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2022-11-15",
@@ -25,7 +19,6 @@ const calcOrderAmount = (items: AddCartType[]) => {
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { items, payment_intent_id } = body;
-  console.log(items, payment_intent_id);
 
   const userSession = await getServerSession(authOptions);
   if (!userSession?.user) {
@@ -38,9 +31,8 @@ export async function POST(request: NextRequest) {
     status: "pending",
     paymentIntentID: payment_intent_id,
     products: {
-      create: items.map((item) => ({
+      create: items.map((item: any) => ({
         name: item.name,
-        description: item.description,
         unit_amount: parseFloat(item.unit_amount),
         image: item.image,
         quantity: item.quantity,
@@ -62,7 +54,7 @@ export async function POST(request: NextRequest) {
         include: { products: true },
       });
       if (!existing_order) {
-        NextResponse.json({ message: "Invalid" });
+        return NextResponse.json({ message: "Invalid" });
       }
 
       const updated_order = await prisma.order.update({
@@ -71,9 +63,8 @@ export async function POST(request: NextRequest) {
           amount: calcOrderAmount(items),
           products: {
             deleteMany: {},
-            create: items.map((item) => ({
+            create: items.map((item: any) => ({
               name: item.name,
-              description: item.description,
               unit_amount: parseFloat(item.unit_amount),
               image: item.image,
               quantity: item.quantity,
@@ -81,8 +72,7 @@ export async function POST(request: NextRequest) {
           },
         },
       });
-      NextResponse.json({ paymentIntent: updated_intent });
-      return;
+      return NextResponse.json({ paymentIntent: updated_intent });
     }
   } else {
     const paymentIntent = await stripe.paymentIntents.create({

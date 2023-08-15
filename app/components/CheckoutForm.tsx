@@ -55,13 +55,13 @@ export default function CheckoutForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} id="payment-form" className="">
+    <form onSubmit={handleSubmit} id="payment-form" className="w-full">
       <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
       <h1 className="   text-[1.3rem] mt-10 ">
         Total: <span className="gradientText">{formattedPrice}</span>
       </h1>
       <button
-        className={`py-2 mt-4  w-full bg-main rounded-md text-white disabled:opacity-25 gradientBg`}
+        className={`py-2 mt-4 mb-4 w-full bg-main rounded-md text-white disabled:opacity-25 gradientBg`}
         id="submit"
         disabled={isLoading || !stripe || !elements}
       >
@@ -69,6 +69,9 @@ export default function CheckoutForm({
           {isLoading ? <span>Processing 👀</span> : <span>Pay now 🔥</span>}
         </span>
       </button>
+      <span className="text-[1rem]  text-secondarytext">
+        For testing: enter cart number: 4242 4242 4242 4242
+      </span>
     </form>
   );
 }
