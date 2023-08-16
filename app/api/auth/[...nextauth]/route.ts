@@ -44,7 +44,6 @@ export const authOptions: NextAuthOptions = {
             if (isPasswordCorrect) {
               return user;
             } else {
-              return null;
             }
           } else {
             return null;
