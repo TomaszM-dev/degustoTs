@@ -5,7 +5,7 @@ import { NextApiRequest } from "next";
 import Stripe from "stripe";
 import { prisma } from "@/utils/prisma";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest, res) {
   const body = await request.json();
   const { name, email, password, image } = body;
 
@@ -13,18 +13,18 @@ export async function POST(request: NextRequest) {
     return new NextResponse("MIssing name");
   }
   if (email == null) throw new Error("Username undefined");
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   const exist = await prisma.user.findUnique({
     where: {
       email: email,
+      hashedPassword: hashedPassword,
     },
   });
 
   if (exist) {
-    return new NextResponse("user exist");
+    return;
   }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
     apiVersion: "2022-11-15",

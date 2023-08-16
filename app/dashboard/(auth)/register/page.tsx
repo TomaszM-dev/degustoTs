@@ -9,6 +9,7 @@ import spinner from "public/loadingSpinner.svg";
 import Image from "next/image";
 import Link from "next/link";
 import userImg from "public/user.png";
+import { motion } from "framer-motion";
 
 export default function Register() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,9 +38,9 @@ export default function Register() {
         }),
       });
       console.log(res.status);
-      setIsLoading(false);
       res.status === 200 && router.push("/dashboard/login");
       res.status === 500 && setErr(true);
+      res.status === 500 && setIsLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -86,7 +87,27 @@ export default function Register() {
           <Image src={spinner} alt="spinner" width={100} height={100}></Image>
         </div>
       )}
-      {err && <div></div>}
+      {err && (
+        <motion.div
+          onClick={() => setErr(false)}
+          className="absolute w-full h-full  left-0 z-10  flex items-center justify-center backdrop-blur-[0.2rem] "
+        >
+          <motion.div
+            onClick={(e) => e.stopPropagation()}
+            className="flex-col w-[30rem] h-[10rem] z-10 bg-black bg-opacity-100 flex shadow pt-4"
+          >
+            <span
+              onClick={() => setErr(false)}
+              className="text-[1.2rem] font-bold self-end px-5 mb-3 "
+            >
+              X
+            </span>
+            <h2 className="text-[1.2rem] px-5 font-bold uppercase ">
+              Something went wrong try diffrent credentials
+            </h2>
+          </motion.div>
+        </motion.div>
+      )}
     </>
   );
 }

@@ -12,7 +12,7 @@ const Login = () => {
     ok: string;
   };
   const [isLoading, setIsLoading] = useState(false);
-  // const session = useSession();
+  const session = useSession();
   const router = useRouter();
 
   const handleSubmit = async (e: any) => {
@@ -22,16 +22,9 @@ const Login = () => {
     const password = e.target[1].value;
 
     signIn("credentials", { email, password });
-    // const { ok }: { ok: string } = await signIn("credentials", {
-    //   email,
-    //   password,
-    //   redirect: false,
-    // });
-
-    // if (ok) return (window.location.href = "/dashboard");
   };
 
-  // console.log(session);
+  console.log(session);
   return (
     <>
       <div className="flex flex-col items-center border-[4px] border-white max-w-fit p-4 mx-auto rounded-lg mt-60">
@@ -62,9 +55,7 @@ const Login = () => {
               setIsLoading(true);
             }}
             className="border-b-2 pb-2"
-          >
-            Login With Google
-          </button>
+          ></button>
           <Link href="/dashboard/register " className="border-b-2 pb-2">
             Register
           </Link>
