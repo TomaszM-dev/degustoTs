@@ -10,6 +10,7 @@ const nextConfig = {
   images: {
     domains: ["lh3.googleusercontent.com", "files.stripe.com"],
   },
+  future: { webpack5: true },
 };
 
 module.exports = nextConfig;

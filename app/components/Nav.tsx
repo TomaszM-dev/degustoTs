@@ -58,7 +58,7 @@ const Nav = ({ user }) => {
         {!user && (
           <Link
             className="gradientBg px-6 py-2 rounded-lg  mb-4"
-            href="/dashboard"
+            href="/dashboard/login"
           >
             Sign Up
           </Link>
