@@ -27,7 +27,7 @@ const Login = () => {
     // signIn("credentials", { email, password , redirect: false});
 
     signIn("credentials", { email, password, redirect: false }).then(
-      ({ error }) => {
+      ({ error }: any) => {
         console.log(error);
 
         if (error === null) {

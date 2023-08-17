@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import gogle from "public/product.png";
 import Image from "next/image";
 import { AiFillShopping } from "react-icons/ai";
@@ -8,40 +8,44 @@ import Stripe from "stripe";
 import Product from "../components/Product";
 import formatPrice from "@/utils/priceFormat";
 import { useCartStore } from "@/store";
+import Filter from "../components/Filter";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Products = () => {
   const cartStore = useCartStore();
-  console.log(cartStore.cart);
-  const products = cartStore.cartAll;
 
+  const products = cartStore.cartAll;
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
   const bestSellers = bestSellersAcc.concat(bestSellersVr);
+
+  const [filtered, setFiltered] = useState(products);
+  const [activeGenre, setActiveGenre] = useState("all");
 
   return (
     <div className="mt-[12rem] flex flex-col">
       <h1 className="text-[2.8rem]">
         Our <span className="gradientText">Products</span>
       </h1>
-      <div className="mt-6 text-[1.2rem] flex items-center gap-7">
-        <button className="gradientBg px-9 py-4 rounded-lg mt-8">
-          All Products
-        </button>
-        <button className="border-[1px] border-purple px-9 py-4 rounded-lg mt-8">
-          Vr google
-        </button>
-        <button className="border-[1px] border-purple px-9 py-4 rounded-lg mt-8">
-          Accessories
-        </button>
-        <button className="border-[1px] border-purple px-9 py-4 rounded-lg mt-8">
-          Games
-        </button>
-      </div>
-      <div className="mt-16 grid grid-cols-fluid gap-10  p-1">
-        {products.map((product) => (
-          <Product {...product} />
-        ))}
-      </div>
+      <Filter
+        setFiltered={setFiltered}
+        products={products}
+        activeGenre={activeGenre}
+        setActiveGenre={setActiveGenre}
+      />
+      <motion.div
+        layout
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        exit={{ opacity: 0 }}
+        className="mt-16 grid grid-cols-fluid gap-10  p-1"
+      >
+        <AnimatePresence>
+          {filtered.map((product) => (
+            <Product key={product.id} {...product} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
       <div className="flex flex-col mt-40 ">
         <div className="w-[100%] mx-auto h-2 gradientBg  rounded-lg"></div>
         <h3 className="mt-5 text-[2.3rem]">

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AiFillShopping } from "react-icons/ai";
 import formatPrice from "@/utils/priceFormat";
 import { ProductType } from "@/types/ProductType";
+import { easeIn, easeInOut, motion } from "framer-motion";
 
 const Product = ({
   name,
@@ -16,7 +17,14 @@ const Product = ({
   const { metaId, overview, paramether } = metadata;
 
   return (
-    <div className="shadow p-3 px-7 flex flex-col gap-2 items-center">
+    <motion.div
+      layout
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, ease: easeInOut }}
+      className="shadow p-3 px-7 flex flex-col gap-2 items-center"
+    >
       <AiFillShopping className="text-[2.1rem] mb-1 self-end" />
       <Image
         className="w-60  h-60"
@@ -25,12 +33,12 @@ const Product = ({
         height={400}
         alt="product"
       ></Image>
-      <div className="self-start ml-2 flex items-center gap-9">
+      <motion.div layout className="self-start ml-2 flex items-center gap-9">
         <h2 className=" text-[1.3rem] font-[500] uppercase py-2 ">{name}</h2>
         <p className="gradientText text-[1.5rem] font-[500]">
           {unit_amount !== null ? formatPrice(unit_amount) : "N/A"}
         </p>
-      </div>
+      </motion.div>
 
       <Link
         href={{
@@ -47,11 +55,14 @@ const Product = ({
           },
         }}
       >
-        <button className="gradientBg px-7 py-3 rounded-lg my-3  ml-3">
+        <motion.button
+          layout
+          className="gradientBg px-7 py-3 rounded-lg my-3  ml-3"
+        >
           See More
-        </button>
+        </motion.button>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
