@@ -13,6 +13,8 @@ import { AnimatePresence, motion } from "framer-motion";
 const Nav = ({ user }) => {
   const cartStore = useCartStore();
   const pathname = usePathname();
+  const session = useSession();
+  console.log(session);
 
   return (
     <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 mx-auto border-b-2 border-purple bg-main">
