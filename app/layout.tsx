@@ -25,15 +25,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-  console.log(session);
+  const sessionServer = await getServerSession(authOptions);
+  console.log(sessionServer);
   return (
     <html lang="en">
       <AuthProvider>
         <body className={`${roboto.className}`}>
           <Hydrate>
             <div className="container">
-              <Nav user={session?.user} expires={session?.expires as string} />
+              <Nav
+                user={sessionServer?.user}
+                expires={sessionServer?.expires as string}
+              />
               {children}
               <Footer />
             </div>
