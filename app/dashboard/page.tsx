@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Dashboard() {
-  const [orders, setOrders] = useState(null);
+  const session = useSession();
+  const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -23,16 +24,20 @@ export default function Dashboard() {
     return data;
   };
   useEffect(() => {
-    fetchOrders()
-      .then((data) => {
-        setOrders(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        router.push("dashboard/login");
-        setError(err);
-        setLoading(false);
-      });
+    if (session.status === "authenticated") {
+      fetchOrders()
+        .then((data) => {
+          setOrders(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          router.push("dashboard/login");
+          setError(err);
+          setLoading(false);
+        });
+    } else {
+      router.push("/");
+    }
   }, []);
 
   if (loading)
@@ -58,6 +63,7 @@ export default function Dashboard() {
           <h2 className="text-[3rem] mb-6 font-bold gradientText">
             Your orders{" "}
           </h2>
+
           {orders.map((order) => (
             <div
               key={order.id}

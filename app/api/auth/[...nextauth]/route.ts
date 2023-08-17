@@ -44,13 +44,19 @@ export const authOptions: NextAuthOptions = {
             if (isPasswordCorrect) {
               return user;
             } else {
-              return null;
+              throw new Error(
+                "User does not exists. Please make sure you insert the correct email & password."
+              );
             }
           } else {
-            return null;
+            throw new Error(
+              "User does not exists. Please make sure you insert the correct email & password."
+            );
           }
         } catch {
-          return null;
+          throw new Error(
+            "User does not exists. Please make sure you insert the correct email & password."
+          );
         }
       },
     }),
