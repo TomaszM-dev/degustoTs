@@ -29,20 +29,20 @@ export default async function RootLayout({
   console.log(sessionServer);
   return (
     <html lang="en">
-      {/* <AuthProvider> */}
-      <body className={`${roboto.className}`}>
-        <Hydrate>
-          <div className="container">
-            <Nav
-              user={sessionServer?.user}
-              expires={sessionServer?.expires as string}
-            />
-            {children}
-            <Footer />
-          </div>
-        </Hydrate>
-      </body>
-      {/* </AuthProvider> */}
+      <AuthProvider>
+        <body className={`${roboto.className}`}>
+          <Hydrate>
+            <div className="container">
+              <Nav
+                user={sessionServer?.user}
+                expires={sessionServer?.expires as string}
+              />
+              {children}
+              <Footer />
+            </div>
+          </Hydrate>
+        </body>
+      </AuthProvider>
     </html>
   );
 }
