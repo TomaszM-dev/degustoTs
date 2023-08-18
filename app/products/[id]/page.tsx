@@ -20,10 +20,17 @@ const Product = ({ searchParams }: SearchParamsType) => {
   const cartStore = useCartStore();
   const products = cartStore.cartAll;
 
+  console.log(searchParams);
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
   const bestSellers = bestSellersAcc.concat(bestSellersVr);
 
+  const filtered = products.filter(
+    (item) => !item.metadata.id.includes(`${searchParams.metaId}`)
+  );
+  console.log(filtered);
+
+  console.log(searchParams.metaId);
   const accordion = [
     {
       headline: "Overview",
@@ -47,6 +54,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
     }
     setSelected(i);
   };
+
   return (
     <div className="mt-48 flex flex-col gap-10">
       <Link className="text-[2rem] flex items-center gap-3" href="/products">
@@ -126,7 +134,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
           Fits <span className="gradientText"> well with</span>
         </h3>
         <div className="mt-16 grid grid-cols-bestS gap-7  p-1">
-          {bestSellers.map((item) => {
+          {filtered.slice(0, 4).map((item) => {
             const { overview, paramether } = item.metadata;
             const name = item.name;
             const unit_amount = item.unit_amount;

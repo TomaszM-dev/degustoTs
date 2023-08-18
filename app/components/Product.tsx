@@ -14,7 +14,7 @@ const Product = ({
   description,
   metadata,
 }: ProductType) => {
-  const { metaId, overview, paramether } = metadata;
+  const { id: metaId, overview, paramether } = metadata;
 
   return (
     <motion.div
