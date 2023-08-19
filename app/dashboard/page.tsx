@@ -67,12 +67,12 @@ export default function Dashboard() {
           {orders.map((order) => (
             <div
               key={order.id}
-              className="rounded-lg p-8 my-4 space-y-2 shadow flex flex-col  w-[53%]"
+              className="rounded-lg p-8 my-4 space-y-2 shadow flex flex-col  w-[53%] max-lg:w-[50%] max-sm:w-[100%] max-md:w-[70%]"
             >
               <div className=" items-center  gap-4 w-full">
                 {order.products.map((product) => (
                   <div className=" mt-3 " key={product.id}>
-                    <div className="flex  gap-10 ">
+                    <div className="flex  gap-10 max-lg:flex-col  max-lg:items-center max-lg:mb-8">
                       <Image
                         src={product.image!}
                         width={200}

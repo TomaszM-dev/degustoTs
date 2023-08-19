@@ -42,12 +42,12 @@ const Filter = ({
       viewport={{
         once: true,
       }}
-      className="mt-6 text-[1.2rem] flex items-center gap-7"
+      className="mt-6 text-[1.2rem] flex items-center gap-7 max-lg:gap-0 max-lg:flex-col max-lg:w-full"
     >
       <motion.button
         variants={showAnimationVariant}
         onClick={() => setActiveGenre("all")}
-        className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
+        className={`border-[1px] max-lg:w-[70%] max-lg: border-purple px-9 py-4 rounded-lg mt-8 ${
           activeGenre === "all" ? "gradientBg px-9 py-4 rounded-lg mt-8 " : ""
         }`}
       >
@@ -56,7 +56,7 @@ const Filter = ({
       <motion.button
         variants={showAnimationVariant}
         onClick={() => setActiveGenre("accessories")}
-        className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
+        className={`border-[1px] max-lg:w-[70%] max-lg: border-purple px-9 py-4 rounded-lg mt-8 ${
           activeGenre === "accessories"
             ? "gradientBg px-9 py-4 rounded-lg mt-8 "
             : ""
@@ -67,7 +67,7 @@ const Filter = ({
       <motion.button
         variants={showAnimationVariant}
         onClick={() => setActiveGenre("googles")}
-        className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
+        className={`border-[1px] max-lg:w-[70%] max-lg: border-purple px-9 py-4 rounded-lg mt-8 ${
           activeGenre === "googles"
             ? "gradientBg px-9 py-4 rounded-lg mt-8 "
             : ""
@@ -78,7 +78,7 @@ const Filter = ({
       <motion.button
         variants={showAnimationVariant}
         onClick={() => setActiveGenre("game")}
-        className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
+        className={`border-[1px] max-lg:w-[70%] max-lg: border-purple px-9 py-4 rounded-lg mt-8 ${
           activeGenre === "game" ? "gradientBg px-9 py-4 rounded-lg mt-8 " : ""
         }`}
       >

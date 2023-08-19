@@ -89,9 +89,9 @@ const Product = ({ searchParams }: SearchParamsType) => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 100 }}
         transition={{ delay: 0.4, duration: 1 }}
-        className="shadow w-[80%] mx-auto pb-5 mt-8  rounded-lg "
+        className="shadow w-[80%] mx-auto pb-5 mt-8  rounded-lg max-sm:w-[100%] "
       >
-        <div className=" flex gap-2">
+        <div className=" flex gap-2 max-lg:flex-col">
           <div className="flex  flex-1 flex-col relative items-center">
             <div className="triangle gradientBg w-[100%] h-[70%] rounded-lg absolute"></div>
             <div className="flex flex-col px-10 pt-20 ">
@@ -110,13 +110,13 @@ const Product = ({ searchParams }: SearchParamsType) => {
               width={300}
               height={300}
               alt="product detail"
-              className="relative w-[21rem] pl-5"
+              className="relative w-[21rem] pl-5 max-lg:pl-0"
             ></Image>
           </div>
           <div className="flex flex-col p-5  flex-1  items-start ">
-            <AiFillShopping className="text-[2.2rem] mr-5  self-end " />
+            <AiFillShopping className="text-[2.2rem] mr-5  self-end  max-lg:hidden" />
             <div className="w-[100%]">
-              <motion.div className="mt-10 w-[70%] mx-auto  h-[20rem]">
+              <motion.div className="mt-10 max-lg:mb-20 w-[70%] mx-auto max-sm:w-[95%]   h-[20rem]">
                 {accordion.map((item, i) => {
                   const { headline, info } = item;
                   return (

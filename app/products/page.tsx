@@ -50,7 +50,7 @@ const Products = () => {
         viewport={{
           once: true,
         }}
-        className="text-[2.8rem]"
+        className="text-[2.8rem] max-lg:text-center"
       >
         Our <span className="gradientText">Products</span>
       </motion.h1>
@@ -87,7 +87,7 @@ const Products = () => {
         <h3 className="mt-5 text-[2.3rem]">
           Our <span className="gradientText">Best Sellers</span>
         </h3>
-        <div className="mt-16 grid grid-cols-bestS gap-7   p-1">
+        <div className="mt-16 grid grid-cols-bestS gap-7 max-lg:mx-0  p-1">
           {bestSellers.map((item) => {
             const { id: metaId, overview, paramether } = item.metadata;
             const name = item.name;

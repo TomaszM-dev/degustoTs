@@ -40,8 +40,8 @@ const Features = () => {
 
   return (
     <div className="w-full  my-12 flex gap-3 flex-col">
-      <motion.div className="flex  gap-10 mt-20 items-center max-lg:flex-col-reverse max-lg:flex-col max-lg:gap-[7rem] max-lg:w-[70%] max-lg:mx-auto">
-        <div className="flex gap-7 flex-row-reverse">
+      <motion.div className="flex  gap-10 mt-20 max-sm:mt-0 items-center max-lg:flex-col-reverse max-lg:flex-col max-lg:gap-[7rem] max-lg:w-[70%] max-sm:w-[100%] max-lg:mx-auto">
+        <div className="flex gap-7 flex-row-reverse max-sm:flex-col">
           {data.map((item, index) => {
             return (
               <motion.div
@@ -79,7 +79,7 @@ const Features = () => {
           variants={upAnimationVariants}
           initial="initial"
           whileInView="animate"
-          className="flex-[40%] flex flex-col gap-10  "
+          className="flex-[40%] flex flex-col gap-10  max-sm:items-center max-sm:text-center "
         >
           <h2 className="text-[2.4rem] leading-[2.7rem]">
             Check New Updated Gaming

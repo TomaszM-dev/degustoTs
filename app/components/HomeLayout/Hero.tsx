@@ -52,12 +52,12 @@ const Hero = () => {
   };
 
   return (
-    <motion.div className="max-lg:flex-col max-lg:gap-20 flex items-center  mt-64  h-full  justify-center gap-10 mb-28">
+    <motion.div className="max-lg:flex-col max-lg:gap-20 flex items-center max-sm:mt-40  mt-64  h-full  justify-center gap-10 mb-28">
       <motion.div
         variants={scrollLeft}
         whileInView={"show"}
         initial="hidden"
-        className="flex-1 max-lg:w-[80%] mx-auto flex flex-col gap-8 self-start max-lg:mb-40"
+        className="flex-1 max-lg:w-[80%] max-sm:w-[100%] max-sm: mx-auto flex flex-col gap-8 self-start max-lg:mb-40"
       >
         <h1 className="text-[3.3rem] font-[600] leading-[3.9rem]">
           Explore the best VR{" "}

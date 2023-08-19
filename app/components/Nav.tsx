@@ -18,14 +18,14 @@ const Nav = ({ user }) => {
   const [activeBar, setActiveBar] = useState(false);
 
   return (
-    <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 max-lg:px-4 mx-auto border-b-2 border-purple bg-main ">
+    <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 max-lg:px-10 mx-auto border-b-2 border-purple bg-main ">
       <h1 className="gradientText text-[2rem] max-lg:text-[1.7rem] font-[400]  ">
         <Link href="/" className="">
           DegustoVR
         </Link>
       </h1>
       <div className="flex items-center gap-7 text-[1.2rem]">
-        <div className=" flex gap-4 max-lg:hidden">
+        <div className=" flex gap-4 max-lg:hidden ">
           <Link
             className={`text-[1.3rem] ${
               pathname === "/" ? "gradientText" : ""
@@ -94,7 +94,7 @@ const Nav = ({ user }) => {
             ></Image>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-5 shadow space-y-3 z-10 text-[1.1rem]  w-72 mt-2 mr-[-3rem]"
+              className="dropdown-content menu p-5 shadow space-y-3 z-10 text-[1.1rem]  w-72 mt-2 mr-[-3rem] max-sm:mr-0 bg-main "
             >
               <li className=" ">
                 <Link
@@ -137,11 +137,11 @@ const Nav = ({ user }) => {
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className=" bg-main shadow absolute right-0 top-0 w-[20rem] h-screen  overflow-scroll flex flex-col items-center gap-5 bg-opacity-[0.98]  "
+              className=" bg-main shadow absolute right-0 top-0 w-[20rem] h-screen  overflow-scroll flex flex-col items-center gap-5 bg-opacity-[0.98]  max-sm:w-[100%] "
             >
               <div
                 onClick={() => setActiveBar(!activeBar)}
-                className=" right-0 self-end text-[1.6rem] cursor-pointer gradientText p-4 "
+                className=" right-0 self-end text-[1.9rem] cursor-pointer gradientText p-10 "
               >
                 X
               </div>

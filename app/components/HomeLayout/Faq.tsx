@@ -14,7 +14,7 @@ const Faq = () => {
   const [element, controls] = useScroll();
 
   return (
-    <div className="mt-60 max-lg:mt-0">
+    <div className="mt-0 max-lg:mt-0">
       <motion.h1
         variants={up}
         animate={controls}

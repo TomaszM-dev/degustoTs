@@ -52,7 +52,7 @@ const Team = () => {
         <h2 className="text-center text-[3.2rem] gradientText font-[500]">
           Our Team
         </h2>
-        <p className="text-secondarytext text-[1.3rem] w-[70%] mx-auto text-center">
+        <p className="text-secondarytext text-[1.3rem] w-[70%] max-sm:w-[100%] mx-auto text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
           ducimus saepe magni nisi voluptate beatae perspiciatis placeat illum
           est dicta.

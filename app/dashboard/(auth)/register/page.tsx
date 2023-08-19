@@ -50,13 +50,13 @@ export default function Register() {
   return (
     <>
       {!isLoading ? (
-        <div className="container h-screen px-6   ">
-          <div className=" flex h-full flex-wrap items-center justify-center lg:justify-between ">
-            <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
+        <div className="h-full py-20  max-sm:px-0  max-sm:mt-0 max-sm:flex max-sm:flex-col    ">
+          <div className=" flex h-full max-sm:mt-20   mt-40 items-center gap-10 justify-center max-lg:mt-48 max-lg:flex-col max-lg:flex-col-reverse ">
+            <div className="mb-12 w-[70%] md:mb-0 md:w-8/12 lg:w-6/12 max-sm:w-full ">
               <LoginAnimation />
             </div>
 
-            <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
+            <div className="md:w-8/12 lg:ml-6 lg:w-5/12 max-sm:w-full">
               <form onSubmit={handleSubmit}>
                 <div className="relative mb-4" data-te-input-wrapper-init>
                   <input

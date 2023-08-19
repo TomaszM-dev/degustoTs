@@ -51,7 +51,7 @@ const ProductOverview = ({ products }: ProductType) => {
         <h2 className="text-[3rem] gradientText text-center">
           Our Best Products
         </h2>
-        <p className="text-[1.2rem] mt-3 text-secondarytext text-center mx-auto mb-10 w-[70%]">
+        <p className="text-[1.2rem] mt-3 text-secondarytext text-center mx-auto mb-10 w-[70%] max-sm:w-[100%]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
           facere eius odio eaque iusto laboriosam corporis temporibus
           accusantium ex delectus!
@@ -60,13 +60,13 @@ const ProductOverview = ({ products }: ProductType) => {
 
       <AiOutlineArrowLeft
         onClick={prev}
-        className="cursor-pointer p-1 rounded-full z-10 absolute top-[62%] left-10 text-[2.3rem]"
+        className="cursor-pointer p-1 rounded-full z-10 absolute top-[62%] left-10 text-[2.3rem] max-sm:hidden"
       />
       <AiOutlineArrowRight
         onClick={next}
-        className="p-1 text-white rounded-full z-10 absolute top-[62%] right-10 text-[2.3rem] cursor-pointer"
+        className="p-1 text-white rounded-full z-10 absolute top-[62%] right-10 text-[2.3rem] cursor-pointer max-sm:hidden"
       />
-      <div className="flex items-center mt-16 overflow-hidden shadow max-w-[75%] relative  mx-auto ">
+      <div className="flex items-center mt-16 overflow-hidden shadow max-w-[75%] relative  mx-auto max-sm:max-w-[100%] ">
         {bestSellers.map((item) => {
           return (
             <motion.div
@@ -75,7 +75,7 @@ const ProductOverview = ({ products }: ProductType) => {
             >
               <div className=" flex gap-10 max-lg:gap-0 max-lg:flex-col max-lg:items-center">
                 <div className="flex  flex-col  ">
-                  <div className="triangle gradientBg w-[100%] max-lg:h-[40%] h-[70%] rounded-lg absolute max-lg:left-0 "></div>
+                  <div className="triangle gradientBg w-[100%] max-lg:h-[40%] h-[70%] rounded-lg absolute max-lg:left-0 max-sm:top-[-2rem]"></div>
                   <div className="flex flex-col px-10 max-lg:px-0 pt-20 ">
                     <h2 className="relative text-[2.1rem] uppercase font-[500]">
                       {item.name}
@@ -92,7 +92,7 @@ const ProductOverview = ({ products }: ProductType) => {
                     alt=""
                     width={400}
                     height={400}
-                    className="max-lg:scale-125 relative w-[18rem] h-[18rem] ml-14 max-lg:ml-0"
+                    className="max-lg:scale-125 relative w-[18rem] h-[18rem] ml-14 max-lg:ml-0 max-sm:w-[14rem] max-sm:h-[14rem]"
                   ></Image>
                 </div>
                 <div className="flex  flex-col p-5  flex-1  items-center  max-lg:w-full max-lg:items-center justify-center">
@@ -103,13 +103,13 @@ const ProductOverview = ({ products }: ProductType) => {
                     )}`}
                   />
                   <div className="w-full flex flex-col items-center justify-center">
-                    <div className="mt-10 w-full flex flex-col ml-40  ">
+                    <div className="mt-10 w-full flex flex-col ml-40 max-sm:ml-20  ">
                       <div className="flex items-center text-[1.4rem] gap-2">
                         <h3 className="text-[1.4rem] w-full  ">Description</h3>
                       </div>
                       <div className="w-[70%] h-1 gradientBg rounded-lg mt-1"></div>
                     </div>
-                    <div className="mt-5 w-full flex flex-col ml-40 ">
+                    <div className="mt-5 w-full flex flex-col ml-40 max-sm:ml-20 ">
                       <div className="flex items-center text-[1.4rem] gap-2">
                         <h3 className="text-[1.4rem] tracking-widest ">
                           Paramether
@@ -117,7 +117,7 @@ const ProductOverview = ({ products }: ProductType) => {
                       </div>
                       <div className="w-[70%] h-1 gradientBg rounded-lg mt-1"></div>
                     </div>
-                    <div className="mt-5 w-full flex flex-col ml-40 ">
+                    <div className="mt-5 w-full flex flex-col ml-40 max-sm:ml-20 ">
                       <div className="flex items-center text-[1.4rem] gap-2">
                         <h3 className="text-[1.4rem] tracking-widest ">
                           Overview
@@ -126,7 +126,7 @@ const ProductOverview = ({ products }: ProductType) => {
                       <div className="w-[70%] h-1 gradientBg rounded-lg mt-1"></div>
                     </div>
                   </div>
-                  <div className="mt-10 flex flex-col  w-[60%]">
+                  <div className="mt-10 flex flex-col  w-[60%] max-sm:w-[80%]">
                     <p className="text-[1.9rem]  gradientText font-[500]">
                       {formatPrice(item.unit_amount as number)}
                     </p>

@@ -29,7 +29,7 @@ const Testimonials = () => {
 
   return (
     <div className="my-20 w-full">
-      <h2 className="text-center text-[3rem] font-[600]">
+      <h2 className="text-center text-[3rem] font-[600] max-sm:text-[2.3rem]">
         Our <span className="gradientText">Global Students</span> say it best
       </h2>
       <div className="flex gap-5 mt-20 max-lg:flex-col">
