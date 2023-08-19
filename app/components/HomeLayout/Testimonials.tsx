@@ -28,11 +28,11 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="my-20 h-screen w-full">
+    <div className="my-20 w-full">
       <h2 className="text-center text-[3rem] font-[600]">
         Our <span className="gradientText">Global Students</span> say it best
       </h2>
-      <div className="flex gap-5 mt-20">
+      <div className="flex gap-5 mt-20 max-lg:flex-col">
         <div className="flex flex-col gap-5 flex-1">
           {data.map((item) => {
             return (

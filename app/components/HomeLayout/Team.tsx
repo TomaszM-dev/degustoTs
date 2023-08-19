@@ -41,7 +41,7 @@ const Team = () => {
   const data = TeamData();
 
   return (
-    <div className="flex flex-col gap-5 mt-40 items-center ">
+    <div className="flex flex-col gap-5 mt-40 items-center max-lg:h-[100rem]">
       <motion.div
         variants={up}
         animate={controls}
@@ -58,7 +58,7 @@ const Team = () => {
           est dicta.
         </p>
       </motion.div>
-      <div className="mt-20 flex gap-10  h-[30rem]  ">
+      <div className="mt-20 flex gap-10  h-[30rem] max-lg:flex-col max-lg:gap-14 max-lg:mt-10 ">
         {data.map((item, index) => {
           return (
             <motion.div
@@ -67,7 +67,7 @@ const Team = () => {
               whileInView="animate"
               custom={index}
               key={index}
-              className={`${index === 1 ? "mb-10" : ""}`}
+              className={`${index === 1 ? "mb-10 max-lg:mb-0" : ""}`}
             >
               <div className={`relative h-full flex flex-col justify-end`}>
                 <Image

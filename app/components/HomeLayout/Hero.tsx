@@ -5,27 +5,59 @@ import gradientMain from "public/gradientMain.png";
 import heroGirl from "public/heroGirl.png";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useScroll } from "../useScroll";
+
 import { useRef } from "react";
 import { scrollLeft, scrollRight, scrollUp } from "../animations/animations";
 
 const Hero = () => {
-  const [element, controls] = useScroll();
-
-  // const ref = useRef<HTMLDivElement>(null);
-  // const { scrollYProgress } = useScroll({
-  //   target: ref,
-  //   offset: ["0 1", "1.1 1"],
-  // });
+  const scrollLeft = {
+    hidden: {
+      x: -300,
+      opacity: 0,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+        delay: 0.1,
+      },
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+        delay: 0.4,
+      },
+    },
+  };
+  const scrollRight = {
+    hidden: {
+      opacity: 0,
+      x: 300,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+        delay: 0.1,
+      },
+    },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        ease: "easeOut",
+        duration: 0.5,
+        delay: 0.4,
+      },
+    },
+  };
 
   return (
-    <motion.div className="flex items-center w-full mt-60  h-[30rem] justify-center gap-10">
+    <motion.div className="max-lg:flex-col max-lg:gap-20 flex items-center  mt-64  h-full  justify-center gap-10 mb-28">
       <motion.div
         variants={scrollLeft}
-        animate={controls}
+        whileInView={"show"}
         initial="hidden"
-        ref={element}
-        className="flex-1 flex flex-col gap-8 self-start"
+        className="flex-1 max-lg:w-[80%] mx-auto flex flex-col gap-8 self-start max-lg:mb-40"
       >
         <h1 className="text-[3.3rem] font-[600] leading-[3.9rem]">
           Explore the best VR{" "}
@@ -49,35 +81,31 @@ const Hero = () => {
       </motion.div>
       <motion.div
         variants={scrollRight}
-        animate={controls}
+        whileInView={"show"}
         initial="hidden"
-        ref={element}
-        className="flex-1 relative  flex items-center justify-center mb-40  w-full h-full shrink-0"
+        className=" relative flex items-center justify-center h-full   w-[30rem] max-lg:mt-20  "
       >
         <Image
-          className="absolute w-[20rem] h-[16rem] rounded-2xl top-[11rem] right-[5rem] "
+          className="self-end mb-[-1rem] scale-125  rounded-2xl "
           src={gradientMain}
           alt="gradient"
           width={300}
           height={300}
         ></Image>
         <Image
-          className="relative h-[24rem] w-[45rem] "
+          className="absolute bottom-0  scale-125 "
           alt="vr girl "
           width={700}
           height={700}
           src={heroGirl}
         ></Image>
-        <div className="absolute w-[20rem] h-[4.6rem] bottom-[3rem] right-[5rem] rounded-2xl blur"></div>
-        <div className="absolute bottom-0 mb-16 ml-10 text-[1.6rem] font-[300] flex items-center justify-center">
-          <h3>Explore our Store</h3>
+        <div className="absolute w-[18.6rem] h-[4.6rem] bottom-[-2rem] max-lg:bottom-[-2rem] right-[5.7rem] rounded-2xl blur  scale-125  "></div>
+        <div className="absolute bottom-[-2rem] mb-4 max-lg:mb-4 ml-2 max-lg:ml-18 text-[1.6rem] font-[300] flex items-center justify-center ">
+          <h3 className="">Explore our Store</h3>
         </div>
       </motion.div>
     </motion.div>
-
-    /* image 3 */
   );
 };
 
 export default Hero;
-/* image 5 */

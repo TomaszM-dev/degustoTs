@@ -27,7 +27,7 @@ const Services = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 mt-20 items-center">
+    <div className="flex flex-col gap-5  items-center mt-[10rem]">
       <motion.div
         variants={up}
         animate={controls}
@@ -43,29 +43,29 @@ const Services = () => {
           est dicta.
         </p>
       </motion.div>
-      <div className="flex flex-col items-end relative  w-[72%] mr-20 h-[30rem]  mt-10 ">
+      <div className="flex flex-col items-end relative  w-[72%] max-lg:h-full max-lg:mr-0 max-lg:items-center  h-[30rem]  mt-10   mx-auto mr-40  max-lg:w-full">
         {data.map((item, index) => {
           return (
             <motion.div
               key={item.info1}
               variants={showAnimationVariant}
-              className="flex justify-between w-full h-full relative gap-[20rem]"
+              className="flex justify-between w-full max-lg:mb-10 relative gap-[20rem] max-lg:gap-20 max-lg:justify-center max-lg:items-center"
             >
               <motion.div
                 initial={"offscreen"}
                 whileInView={"onscreen"}
                 transition={{ staggerChildren: 0.5 }}
-                className="flex flex-col h-[100%] justify-between w-fit items-center"
+                className="flex flex-col h-[100%] justify-between w-fit items-center max-lg:justify-start max-lg:gap-5 "
               >
                 <motion.h2
                   variants={showAnimationVariant}
-                  className="mt-[5.3rem] gradientBg px-9 py-4 rounded-lg z-10 "
+                  className="mt-[5.3rem] ml-24  max-lg:ml-0 max-lg:mt-0  gradientBg   px-9 py-4 rounded-lg z-10 "
                 >
                   {item.info1}
                 </motion.h2>
                 <motion.h2
                   variants={showAnimationVariant}
-                  className="gradientBg px-9 py-4 rounded-lg mb-10 ml-14 z-10"
+                  className="gradientBg px-9 py-4 rounded-lg mb-10 ml-14 z-10 max-lg:mb-0 max-lg:ml-0 "
                 >
                   {item.info2}
                 </motion.h2>
@@ -74,17 +74,17 @@ const Services = () => {
                 initial={"offscreen"}
                 whileInView={"onscreen"}
                 transition={{ staggerChildren: 0.5 }}
-                className="flex flex-col h-[100%] justify-between w-fit items-center"
+                className="flex flex-col h-[100%] justify-between w-fit items-center max-lg:justify-start max-lg:gap-5 "
               >
                 <motion.h2
                   variants={showAnimationVariant}
-                  className="mt-[5.3rem] gradientBg px-9 py-4 rounded-lg z-10 mr-10 "
+                  className=" mt-[5.3rem] gradientBg px-9 py-4 rounded-lg z-10 mr-4 max-lg:gap-20 max-lg:justify-center max-lg:items-center max-lg:mt-0 max-lg:w-full max-lg:mr-0"
                 >
                   {item.info3}
                 </motion.h2>
                 <motion.h2
                   variants={showAnimationVariant}
-                  className="gradientBg px-9 py-4 rounded-lg mb-20 ml-12 z-10"
+                  className="gradientBg px-9 py-4 rounded-lg mb-20 ml-12 z-10 max-lg:gap-20 max-lg:justify-center max-lg:items-center max-lg:mb-0 max-lg:ml-0  max-lg:w-full"
                 >
                   {item.info4}
                 </motion.h2>
@@ -94,13 +94,13 @@ const Services = () => {
         })}
 
         <Image
-          className="top-[50%] absolute left-[50%] translate-x-[-50%] translate-y-[-50%]"
+          className="bottom-0 right-20 absolute mb-4 max-lg:hidden "
           src={servImg}
           alt="es"
           width={600}
-          height={500}
+          height={600}
         ></Image>
-        <div className="w-[55%] mr-20 mb-[1.7rem] mx-auto h-[0.9rem] shadow rounded-lg gradientBg"></div>
+        <div className="w-[55%] mr-20 max-lg:w-[80%] mx-auto h-[0.9rem] shadow rounded-lg gradientBg"></div>
       </div>
     </div>
   );

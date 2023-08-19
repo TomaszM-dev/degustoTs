@@ -15,8 +15,9 @@ import AddCart from "@/app/products/AddCart";
 import { useScroll } from "../useScroll";
 import { motion } from "framer-motion";
 import { scrollReveal, up } from "../animations/animations";
+import { ProductType } from "@/types/ProductType";
 
-const ProductOverview = ({ products }) => {
+const ProductOverview = ({ products }: ProductType) => {
   const [element, controls] = useScroll();
 
   const cartStore = useCartStore();
@@ -72,10 +73,10 @@ const ProductOverview = ({ products }) => {
               className="  min-w-full mx-auto pb-5   rounded-lg transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${curr * 100}%)` }}
             >
-              <div className=" flex gap-10">
-                <div className="flex  flex-col relative ">
-                  <div className="triangle gradientBg w-[100%] h-[70%] rounded-lg absolute "></div>
-                  <div className="flex flex-col px-10 pt-20 ">
+              <div className=" flex gap-10 max-lg:gap-0 max-lg:flex-col max-lg:items-center">
+                <div className="flex  flex-col  ">
+                  <div className="triangle gradientBg w-[100%] max-lg:h-[40%] h-[70%] rounded-lg absolute max-lg:left-0 "></div>
+                  <div className="flex flex-col px-10 max-lg:px-0 pt-20 ">
                     <h2 className="relative text-[2.1rem] uppercase font-[500]">
                       {item.name}
                     </h2>
@@ -91,26 +92,24 @@ const ProductOverview = ({ products }) => {
                     alt=""
                     width={400}
                     height={400}
-                    className="relative w-[18rem] h-[18rem] ml-14"
+                    className="max-lg:scale-125 relative w-[18rem] h-[18rem] ml-14 max-lg:ml-0"
                   ></Image>
                 </div>
-                <div className="flex  flex-col p-5  flex-1  items-start ">
+                <div className="flex  flex-col p-5  flex-1  items-center  max-lg:w-full max-lg:items-center justify-center">
                   {/* <CartIcon id={item.id} /> */}
                   <AiFillShopping
-                    className={`text-[2.2rem]  mr-5  self-end  ${cartStore.cart.map(
+                    className={`text-[2.2rem]  mr-5  self-end max-lg:hidden  ${cartStore.cart.map(
                       (es) => (es.id === item.id ? "text-purple" : "text-white")
                     )}`}
                   />
-                  <div className="w-full">
-                    <div className="mt-10 w-full">
+                  <div className="w-full flex flex-col items-center justify-center">
+                    <div className="mt-10 w-full flex flex-col ml-40  ">
                       <div className="flex items-center text-[1.4rem] gap-2">
-                        <h3 className="text-[1.4rem] tracking-widest ">
-                          Description
-                        </h3>
+                        <h3 className="text-[1.4rem] w-full  ">Description</h3>
                       </div>
                       <div className="w-[70%] h-1 gradientBg rounded-lg mt-1"></div>
                     </div>
-                    <div className="mt-5 w-full">
+                    <div className="mt-5 w-full flex flex-col ml-40 ">
                       <div className="flex items-center text-[1.4rem] gap-2">
                         <h3 className="text-[1.4rem] tracking-widest ">
                           Paramether
@@ -118,7 +117,7 @@ const ProductOverview = ({ products }) => {
                       </div>
                       <div className="w-[70%] h-1 gradientBg rounded-lg mt-1"></div>
                     </div>
-                    <div className="mt-5 w-full">
+                    <div className="mt-5 w-full flex flex-col ml-40 ">
                       <div className="flex items-center text-[1.4rem] gap-2">
                         <h3 className="text-[1.4rem] tracking-widest ">
                           Overview
@@ -129,7 +128,7 @@ const ProductOverview = ({ products }) => {
                   </div>
                   <div className="mt-10 flex flex-col  w-[60%]">
                     <p className="text-[1.9rem]  gradientText font-[500]">
-                      {formatPrice(item.unit_amount)}
+                      {formatPrice(item.unit_amount as number)}
                     </p>
                     <AddCart
                       name={item.name}

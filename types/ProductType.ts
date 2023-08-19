@@ -1,3 +1,7 @@
+type ProductsArray = {
+  products: [];
+};
+
 export type ProductType = {
   id: string;
   name: string;
@@ -5,6 +9,7 @@ export type ProductType = {
   description: string;
   metadata: MetadataType;
   unit_amount: number | null;
+  products: ProductsArray;
 };
 
 type MetadataType = {

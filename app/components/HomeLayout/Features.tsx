@@ -1,17 +1,11 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import cardImg from "public/cardPhoto1.png";
-import cardImg2 from "public/cardPhoto2.png";
-import gradientPhoto from "public/gradientMain.png";
 import FeaturesData from "@/Data/FeaturesData";
 import { easeIn, easeInOut, easeOut, motion } from "framer-motion";
-import { useScroll } from "../useScroll";
-import { scrollUp } from "../animations/animations";
 
 const Features = () => {
   const data = FeaturesData();
-  const [element, controls] = useScroll();
 
   const slideAnimationVariant = {
     initial: {
@@ -45,8 +39,8 @@ const Features = () => {
   };
 
   return (
-    <div className="w-full my-12 flex gap-3 flex-col">
-      <motion.div className="flex  gap-10 mt-20 items-center">
+    <div className="w-full  my-12 flex gap-3 flex-col">
+      <motion.div className="flex  gap-10 mt-20 items-center max-lg:flex-col-reverse max-lg:flex-col max-lg:gap-[7rem] max-lg:w-[70%] max-lg:mx-auto">
         <div className="flex gap-7 flex-row-reverse">
           {data.map((item, index) => {
             return (
@@ -85,7 +79,7 @@ const Features = () => {
           variants={upAnimationVariants}
           initial="initial"
           whileInView="animate"
-          className="flex-[40%] flex flex-col gap-10 "
+          className="flex-[40%] flex flex-col gap-10  "
         >
           <h2 className="text-[2.4rem] leading-[2.7rem]">
             Check New Updated Gaming

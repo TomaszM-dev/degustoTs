@@ -28,7 +28,7 @@ const Cart = () => {
     >
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        className=" bg-main shadow absolute right-0 top-0 w-[34%] h-screen  overflow-scroll flex flex-col items-center gap-5 bg-opacity-[0.98] "
+        className=" bg-main shadow absolute right-0 top-0 w-[34%] max-lg:w-[100%] h-screen  overflow-scroll flex flex-col items-center gap-5 bg-opacity-[0.98] "
       >
         {cartStore.onCheckout === "cart" && (
           <h1

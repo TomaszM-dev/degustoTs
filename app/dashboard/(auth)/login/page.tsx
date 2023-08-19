@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import LoadingSpinner from "@/app/components/LoadingSpinner";
 import { SignInResponse } from "next-auth/react";
 import { motion } from "framer-motion";
 import LoginAnimation from "@/app/components/LoginAnimation";
+import { show } from "@/app/components/animations/animations";
 
 const Login = () => {
   type response = {
@@ -15,6 +16,7 @@ const Login = () => {
   };
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(false);
+  const [spinner, showSpinner] = useState(false);
 
   const session = useSession();
   const router = useRouter();
