@@ -31,7 +31,13 @@ export default function Checkout() {
       }),
     })
       .then((res) => {
-        return res.json();
+        if (res.status === 500) {
+          cartStore.toggleCart();
+          cartStore.setCheckout("cart");
+          router.push("/dashboard/login");
+        } else {
+          return res.json();
+        }
       })
       .then((data) => {
         setClientSecret(data.paymentIntent.client_secret);
