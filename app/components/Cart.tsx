@@ -94,7 +94,7 @@ const Cart = () => {
         {cartStore.cart.length > 0 && cartStore.onCheckout === "cart" ? (
           <motion.div
             layout
-            className="flex flex-col mt-6 gap-3 self-start px-12 w-full"
+            className="flex flex-col mt-7 gap-3 self-start px-12 w-full"
           >
             <p className="text-[1.2rem]">
               Total Price:{" "}
