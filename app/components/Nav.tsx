@@ -1,43 +1,61 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useCartStore } from "@/store";
 import { AiFillShopping } from "react-icons/ai";
-import { FaUserAlt } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Cart from "./Cart";
 import { AnimatePresence, motion } from "framer-motion";
+import hamburger from "public/hamburger.png";
+import close from "public/close.png";
 
 const Nav = ({ user }) => {
   const cartStore = useCartStore();
   const pathname = usePathname();
   const session = useSession();
+  const [activeBar, setActiveBar] = useState(false);
 
   return (
-    <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 mx-auto border-b-2 border-purple bg-main">
-      <h1 className="gradientText text-[2rem] font-[400]  ">
+    <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 max-lg:px-4 mx-auto border-b-2 border-purple bg-main ">
+      <h1 className="gradientText text-[2rem] max-lg:text-[1.7rem] font-[400]  ">
         <Link href="/" className="">
           DegustoVR
         </Link>
       </h1>
       <div className="flex items-center gap-7 text-[1.2rem]">
-        <Link
-          className={`text-[1.3rem] ${pathname === "/" ? "gradientText" : ""}`}
-          href="/"
-        >
-          Home
-        </Link>
+        <div className=" flex gap-4 max-lg:hidden">
+          <Link
+            className={`text-[1.3rem] ${
+              pathname === "/" ? "gradientText" : ""
+            }`}
+            href="/"
+          >
+            Home
+          </Link>
 
-        <Link
-          className={`text-[1.3rem] ${
-            pathname === "/products" ? "gradientText" : ""
-          }`}
-          href="/products"
-        >
-          Products
-        </Link>
+          <Link
+            className={`text-[1.3rem] ${
+              pathname === "/products" ? "gradientText" : ""
+            }`}
+            href="/products"
+          >
+            Products
+          </Link>
+        </div>
+        <div className="max-lg:flex hidden items-center ">
+          <button onClick={() => setActiveBar(!activeBar)}>
+            <Image
+              src={hamburger}
+              width={100}
+              height={100}
+              alt="hamburger"
+              className=" w-10 h-10 mb-2 "
+            ></Image>
+          </button>
+        </div>
+
         <div
           onClick={() => cartStore.toggleCart()}
           className="flex items-center text-3xl relative cursor-pointer "
@@ -108,6 +126,51 @@ const Nav = ({ user }) => {
           </div>
         )}
       </div>
+      <AnimatePresence>
+        {activeBar && (
+          <motion.div
+            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 100 }}
+            exit={{ opacity: 0, x: 100 }}
+            className="fixed w-full    h-screen left-0 top-0  bg-opacity-[0.40]"
+            onClick={() => setActiveBar(!activeBar)}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className=" bg-main shadow absolute right-0 top-0 w-[20rem] h-screen  overflow-scroll flex flex-col items-center gap-5 bg-opacity-[0.98]  "
+            >
+              <div
+                onClick={() => setActiveBar(!activeBar)}
+                className=" right-0 self-end text-[1.6rem] cursor-pointer gradientText p-4 "
+              >
+                X
+              </div>
+
+              <div className="flex flex-col items-center gap-8 mt-20 ">
+                <Link
+                  onClick={() => setActiveBar(!activeBar)}
+                  className={`text-[1.7rem] border-b-[1px] border-purple ${
+                    pathname === "/" ? "gradientText" : ""
+                  }`}
+                  href="/"
+                >
+                  Home
+                </Link>
+
+                <Link
+                  onClick={() => setActiveBar(!activeBar)}
+                  className={`text-[1.7rem] border-b-[1px] border-purple ${
+                    pathname === "/products" ? "gradientText" : ""
+                  }`}
+                  href="/products"
+                >
+                  Products
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
     </div>
   );
