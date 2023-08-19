@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
+import { easeInOut, motion } from "framer-motion";
 
 const Filter = ({
   setActiveGenre,
@@ -7,6 +8,20 @@ const Filter = ({
   setFiltered,
   products,
 }: any) => {
+  const showAnimationVariant = {
+    offscreen: {
+      opacity: 0,
+    },
+    onscreen: {
+      opacity: 1,
+
+      transition: {
+        duration: 0.8,
+        ease: easeInOut,
+      },
+    },
+  };
+
   useEffect(() => {
     if (activeGenre === "all") {
       setFiltered(products);
@@ -20,16 +35,26 @@ const Filter = ({
   }, [activeGenre]);
 
   return (
-    <div className="mt-6 text-[1.2rem] flex items-center gap-7">
-      <button
+    <motion.div
+      initial={"offscreen"}
+      whileInView={"onscreen"}
+      transition={{ staggerChildren: 0.2 }}
+      viewport={{
+        once: true,
+      }}
+      className="mt-6 text-[1.2rem] flex items-center gap-7"
+    >
+      <motion.button
+        variants={showAnimationVariant}
         onClick={() => setActiveGenre("all")}
         className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
           activeGenre === "all" ? "gradientBg px-9 py-4 rounded-lg mt-8 " : ""
         }`}
       >
         All Products
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+        variants={showAnimationVariant}
         onClick={() => setActiveGenre("accessories")}
         className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
           activeGenre === "accessories"
@@ -38,26 +63,28 @@ const Filter = ({
         }`}
       >
         Accessories
-      </button>
-      <button
-        onClick={() => setActiveGenre("google")}
+      </motion.button>
+      <motion.button
+        variants={showAnimationVariant}
+        onClick={() => setActiveGenre("googles")}
         className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
-          activeGenre === "google"
+          activeGenre === "googles"
             ? "gradientBg px-9 py-4 rounded-lg mt-8 "
             : ""
         }`}
       >
         Vr google
-      </button>
-      <button
+      </motion.button>
+      <motion.button
+        variants={showAnimationVariant}
         onClick={() => setActiveGenre("game")}
         className={`border-[1px] border-purple px-9 py-4 rounded-lg mt-8 ${
           activeGenre === "game" ? "gradientBg px-9 py-4 rounded-lg mt-8 " : ""
         }`}
       >
         Games
-      </button>
-    </div>
+      </motion.button>
+    </motion.div>
   );
 };
 

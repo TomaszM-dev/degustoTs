@@ -10,12 +10,15 @@ import {
   AiOutlineArrowRight,
 } from "react-icons/ai";
 import { useCartStore } from "@/store";
-
 import formatPrice from "@/utils/priceFormat";
 import AddCart from "@/app/products/AddCart";
-import CartIcon from "../CartIcon";
+import { useScroll } from "../useScroll";
+import { motion } from "framer-motion";
+import { scrollReveal, up } from "../animations/animations";
 
 const ProductOverview = ({ products }) => {
+  const [element, controls] = useScroll();
+
   const cartStore = useCartStore();
 
   useEffect(() => {
@@ -36,15 +39,24 @@ const ProductOverview = ({ products }) => {
   };
 
   return (
-    <div className="mt-20 w-[100%] mx-auto  relative">
-      <h2 className="text-[3rem] gradientText text-center">
-        Our Best Products
-      </h2>
-      <p className="text-[1.2rem] mt-3 text-secondarytext text-center mx-auto mb-20 w-[70%]">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        facere eius odio eaque iusto laboriosam corporis temporibus accusantium
-        ex delectus!
-      </p>
+    <motion.div
+      variants={up}
+      animate={controls}
+      initial="hidden"
+      ref={element}
+      className="mt-20 w-[100%] mx-auto  relative"
+    >
+      <motion.div className="flex flex-col">
+        <h2 className="text-[3rem] gradientText text-center">
+          Our Best Products
+        </h2>
+        <p className="text-[1.2rem] mt-3 text-secondarytext text-center mx-auto mb-10 w-[70%]">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+          facere eius odio eaque iusto laboriosam corporis temporibus
+          accusantium ex delectus!
+        </p>
+      </motion.div>
+
       <AiOutlineArrowLeft
         onClick={prev}
         className="cursor-pointer p-1 rounded-full z-10 absolute top-[62%] left-10 text-[2.3rem]"
@@ -56,7 +68,7 @@ const ProductOverview = ({ products }) => {
       <div className="flex items-center mt-16 overflow-hidden shadow max-w-[75%] relative  mx-auto ">
         {bestSellers.map((item) => {
           return (
-            <div
+            <motion.div
               className="  min-w-full mx-auto pb-5   rounded-lg transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${curr * 100}%)` }}
             >
@@ -128,7 +140,7 @@ const ProductOverview = ({ products }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -143,7 +155,7 @@ const ProductOverview = ({ products }) => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -7,7 +7,6 @@ import React from "react";
 const Hydrate = ({ children }: { children: ReactNode }) => {
   const [isHydrated, setIsHydrated] = useState(false);
 
-  // wait till next js completes
   useEffect(() => {
     setIsHydrated(true);
   }, []);

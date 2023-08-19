@@ -54,10 +54,11 @@ const Product = ({
             description,
           },
         }}
+        className="w-full"
       >
         <motion.button
           layout
-          className="gradientBg px-7 py-3 rounded-lg my-3  ml-3"
+          className="gradientBg w-full px-7 py-3 rounded-lg my-3  ml-3"
         >
           See More
         </motion.button>

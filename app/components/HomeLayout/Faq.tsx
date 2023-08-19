@@ -6,17 +6,31 @@ import { LayoutGroup } from "framer-motion";
 import Toggle from "./Toggle";
 
 import Link from "next/link";
+import { useScroll } from "../useScroll";
+import { scrollReveal, up } from "../animations/animations";
 
 const Faq = () => {
   const faqData = FaqData();
-  // const [element, controls] = useScroll();
+  const [element, controls] = useScroll();
 
   return (
-    <div className="mt-20">
-      <motion.h1 className="text-[2.8rem] text-center font-[700] leading-[3.3rem] my-20 w-[90%] mx-auto">
+    <div className="mt-60">
+      <motion.h1
+        variants={up}
+        animate={controls}
+        initial="hidden"
+        ref={element}
+        className="text-[2.8rem] text-center font-[700] leading-[3.3rem] my-20 w-[90%] mx-auto"
+      >
         Frequently<span className="gradientText"> Asked</span> Questions
       </motion.h1>
-      <motion.div className="text-[1.5rem] font-[600] w-[80%] mx-auto flex flex-col gap-10 my-20">
+      <motion.div
+        variants={scrollReveal}
+        animate={controls}
+        initial="hidden"
+        ref={element}
+        className="text-[1.5rem] font-[600] w-[80%] mx-auto flex flex-col gap-10 my-20"
+      >
         <LayoutGroup>
           {faqData.map((el) => {
             return (

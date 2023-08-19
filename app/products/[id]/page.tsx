@@ -8,19 +8,19 @@ import {
   AiOutlineArrowUp,
 } from "react-icons/ai";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { easeInOut, motion } from "framer-motion";
 import { useState } from "react";
 import { SearchParamsType } from "@/types/SearchParamsType";
 import AddCart from "../AddCart";
 import { useCartStore } from "@/store";
 import formatPrice from "@/utils/priceFormat";
 import CartIcon from "@/app/components/CartIcon";
+import { up } from "@/app/components/animations/animations";
 
 const Product = ({ searchParams }: SearchParamsType) => {
   const cartStore = useCartStore();
   const products = cartStore.cartAll;
 
-  console.log(searchParams);
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
   const bestSellers = bestSellersAcc.concat(bestSellersVr);
@@ -28,9 +28,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
   const filtered = products.filter(
     (item) => !item.metadata.id.includes(`${searchParams.metaId}`)
   );
-  console.log(filtered);
 
-  console.log(searchParams.metaId);
   const accordion = [
     {
       headline: "Overview",
@@ -46,6 +44,21 @@ const Product = ({ searchParams }: SearchParamsType) => {
     },
   ];
 
+  const showAnimationVariant = {
+    offscreen: {
+      opacity: 0,
+    },
+    onscreen: {
+      opacity: 1,
+
+      transition: (i) => ({
+        delay: 0.5 * i,
+        duration: 1.8,
+        ease: easeInOut,
+      }),
+    },
+  };
+
   const [selected, setSelected] = useState(0);
 
   const toggle = (i: number) => {
@@ -56,13 +69,28 @@ const Product = ({ searchParams }: SearchParamsType) => {
   };
 
   return (
-    <div className="mt-48 flex flex-col gap-10">
+    <div className="mt-40 flex flex-col gap-10">
       <Link className="text-[2rem] flex items-center gap-3" href="/products">
-        <h1 className="">
+        <motion.h1
+          viewport={{
+            once: true,
+          }}
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -100 }}
+          transition={{ delay: 0.4, duration: 1 }}
+        >
           ⬅ Go back to <span className="gradientText">the store</span>
-        </h1>
+        </motion.h1>
       </Link>
-      <div className="shadow w-[80%] mx-auto pb-5 mt-16  rounded-lg ">
+      <motion.div
+        viewport={{
+          once: true,
+        }}
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 100 }}
+        transition={{ delay: 0.4, duration: 1 }}
+        className="shadow w-[80%] mx-auto pb-5 mt-8  rounded-lg "
+      >
         <div className=" flex gap-2">
           <div className="flex  flex-1 flex-col relative items-center">
             <div className="triangle gradientBg w-[100%] h-[70%] rounded-lg absolute"></div>
@@ -88,36 +116,58 @@ const Product = ({ searchParams }: SearchParamsType) => {
           <div className="flex flex-col p-5  flex-1  items-start ">
             <AiFillShopping className="text-[2.2rem] mr-5  self-end " />
             <div className="w-[100%]">
-              <div className="mt-10 w-[70%] mx-auto  h-[20rem]">
+              <motion.div className="mt-10 w-[70%] mx-auto  h-[20rem]">
                 {accordion.map((item, i) => {
                   const { headline, info } = item;
                   return (
-                    <motion.div className="flex mb-4 flex-col justify-between text-[1.4rem]">
-                      <div
+                    <motion.div
+                      key={item.headline}
+                      initial={"offscreen"}
+                      whileInView={"onscreen"}
+                      transition={{ staggerChildren: 1 }}
+                      viewport={{
+                        once: true,
+                      }}
+                      className="flex mb-4 flex-col justify-between text-[1.4rem]"
+                    >
+                      <motion.div
+                        variants={showAnimationVariant}
                         onClick={() => toggle(i)}
                         className="flex justify-between   items-center cursor-pointer"
                       >
-                        <h3 className="text-[1.4rem] tracking-widest ">
+                        <motion.h3
+                          layout
+                          className="text-[1.4rem] tracking-widest "
+                        >
                           {headline}
-                        </h3>
+                        </motion.h3>
                         {selected === i ? (
                           <AiOutlineArrowUp className="font-[600]" />
                         ) : (
                           <AiOutlineArrowDown />
                         )}
-                      </div>
-                      <div className="w-[100%]  h-1 gradientBg rounded-lg mt-1"></div>
+                      </motion.div>
+                      <motion.div
+                        layout
+                        animate={{ opacity: 1 }}
+                        initial={{ opacity: 0 }}
+                        className="w-[100%]  h-1 gradientBg rounded-lg mt-1"
+                      ></motion.div>
                       {selected === i ? (
-                        <div className="text-secondarytext p-2 text-[1.2rem]">
+                        <motion.div
+                          animate={{ opacity: 1 }}
+                          initial={{ opacity: 0 }}
+                          className="text-secondarytext p-2 text-[1.2rem]"
+                        >
                           {info}
-                        </div>
+                        </motion.div>
                       ) : (
                         ""
                       )}
                     </motion.div>
                   );
                 })}
-              </div>
+              </motion.div>
             </div>
             <div className="mt-10 flex flex-col  w-[80%] mx-auto items-center">
               <p className="text-[1.9rem] self-center gradientText font-[500]">
@@ -127,7 +177,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <div className="flex flex-col mt-40 ">
         <div className="w-[100%] mx-auto h-2 gradientBg  rounded-lg"></div>
         <h3 className="mt-5 text-[2.3rem]">
@@ -135,12 +185,13 @@ const Product = ({ searchParams }: SearchParamsType) => {
         </h3>
         <div className="mt-16 grid grid-cols-bestS gap-7  p-1">
           {filtered.slice(0, 4).map((item) => {
-            const { overview, paramether } = item.metadata;
+            const { overview, paramether, id: metaId } = item.metadata;
             const name = item.name;
             const unit_amount = item.unit_amount;
             const description = item.description;
             const image = item.image;
             const id = item.id;
+
             return (
               <Link
                 href={{
@@ -153,6 +204,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
                     overview,
                     paramether,
                     description,
+                    metaId,
                   },
                 }}
                 className="shadow p-3 px-7 flex flex-col gap-2 items-center "

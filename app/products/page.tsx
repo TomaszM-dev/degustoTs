@@ -9,11 +9,13 @@ import Product from "../components/Product";
 import formatPrice from "@/utils/priceFormat";
 import { useCartStore } from "@/store";
 import Filter from "../components/Filter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, easeInOut } from "framer-motion";
+import { useScroll } from "../components/useScroll";
+import { up } from "../components/animations/animations";
 
 const Products = () => {
   const cartStore = useCartStore();
-
+  const [element, controls] = useScroll();
   const products = cartStore.cartAll;
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
@@ -22,11 +24,36 @@ const Products = () => {
   const [filtered, setFiltered] = useState(products);
   const [activeGenre, setActiveGenre] = useState("all");
 
+  const showAnimationVariant = {
+    offscreen: {
+      opacity: 0,
+      y: 50,
+    },
+    onscreen: {
+      opacity: 1,
+      y: 0,
+
+      transition: {
+        duration: 0.8,
+        delay: 0.3,
+        ease: easeInOut,
+      },
+    },
+  };
+
   return (
     <div className="mt-[12rem] flex flex-col">
-      <h1 className="text-[2.8rem]">
+      <motion.h1
+        initial={"offscreen"}
+        variants={showAnimationVariant}
+        whileInView={"onscreen"}
+        viewport={{
+          once: true,
+        }}
+        className="text-[2.8rem]"
+      >
         Our <span className="gradientText">Products</span>
-      </h1>
+      </motion.h1>
       <Filter
         setFiltered={setFiltered}
         products={products}
@@ -34,17 +61,26 @@ const Products = () => {
         setActiveGenre={setActiveGenre}
       />
       <motion.div
-        layout
-        animate={{ opacity: 1 }}
+        viewport={{
+          once: true,
+        }}
+        whileInView={{ opacity: 1 }}
         initial={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
-        className="mt-16 grid grid-cols-fluid gap-10  p-1"
+        transition={{ delay: 0.4, duration: 1 }}
       >
-        <AnimatePresence>
-          {filtered.map((product) => (
-            <Product key={product.id} {...product} />
-          ))}
-        </AnimatePresence>
+        <motion.div
+          layout
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          exit={{ opacity: 0 }}
+          className="mt-16 grid grid-cols-fluid gap-10  p-1"
+        >
+          <AnimatePresence>
+            {filtered.map((product) => (
+              <Product key={product.id} {...product} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </motion.div>
       <div className="flex flex-col mt-40 ">
         <div className="w-[100%] mx-auto h-2 gradientBg  rounded-lg"></div>
@@ -53,7 +89,7 @@ const Products = () => {
         </h3>
         <div className="mt-16 grid grid-cols-bestS gap-7   p-1">
           {bestSellers.map((item) => {
-            const { overview, paramether } = item.metadata;
+            const { id: metaId, overview, paramether } = item.metadata;
             const name = item.name;
             const unit_amount = item.unit_amount;
             const description = item.description;
@@ -71,6 +107,7 @@ const Products = () => {
                     overview,
                     paramether,
                     description,
+                    metaId,
                   },
                 }}
                 className="shadow p-3 px-7 flex flex-col gap-2 items-center "
