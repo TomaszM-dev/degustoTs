@@ -15,7 +15,8 @@ const Product = ({
   metadata,
 }: ProductType) => {
   const { id: metaId, overview, paramether } = metadata;
-  console.log(id, metaId, name);
+
+  const queryId = id;
 
   return (
     <motion.div
@@ -48,7 +49,7 @@ const Product = ({
             name,
             image,
             unit_amount,
-            id,
+            queryId,
             metaId,
             overview,
             paramether,
