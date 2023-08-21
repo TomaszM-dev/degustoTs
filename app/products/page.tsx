@@ -15,7 +15,7 @@ import { up } from "../components/animations/animations";
 
 const Products = () => {
   const cartStore = useCartStore();
-  const [element, controls] = useScroll();
+
   const products = cartStore.cartAll;
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
