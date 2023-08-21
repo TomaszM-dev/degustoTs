@@ -23,6 +23,7 @@ const Products = () => {
 
   const [filtered, setFiltered] = useState(products);
   const [activeGenre, setActiveGenre] = useState("all");
+  console.log(filtered);
 
   const showAnimationVariant = {
     offscreen: {
@@ -95,6 +96,8 @@ const Products = () => {
             const description = item.description;
             const image = item.image;
             const id = item.id;
+
+            console.log(id);
             return (
               <Link
                 key={index}
