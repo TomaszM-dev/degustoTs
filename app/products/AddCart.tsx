@@ -10,7 +10,7 @@ export default function AddCart({
   quantity,
 }: AddCartType) {
   const cartStore = useCartStore();
-
+  console.log(name);
   return (
     <div className="w-[90%] mx-auto flex items-center">
       <button

@@ -135,6 +135,7 @@ const ProductOverview = ({ products }: ProductType) => {
                       name={item.name}
                       id={item.id}
                       image={item.image}
+                      quantity={item.quantity}
                       unit_amount={item.unit_amount}
                     />
                   </div>
