@@ -121,7 +121,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
                   const { headline, info } = item;
                   return (
                     <motion.div
-                      key={item.headline}
+                      key={i}
                       initial={"offscreen"}
                       whileInView={"onscreen"}
                       transition={{ staggerChildren: 1 }}
@@ -194,6 +194,7 @@ const Product = ({ searchParams }: SearchParamsType) => {
 
             return (
               <Link
+                key={item.id}
                 href={{
                   pathname: `/products/${item.id}`,
                   query: {

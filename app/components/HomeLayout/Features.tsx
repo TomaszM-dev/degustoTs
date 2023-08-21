@@ -45,7 +45,7 @@ const Features = () => {
           {data.map((item, index) => {
             return (
               <motion.div
-                key={item.person}
+                key={index}
                 variants={slideAnimationVariant}
                 initial="initial"
                 whileInView="animate"

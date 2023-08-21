@@ -88,7 +88,7 @@ const Products = () => {
           Our <span className="gradientText">Best Sellers</span>
         </h3>
         <div className="mt-16 grid grid-cols-bestS gap-7 max-lg:mx-0  p-1">
-          {bestSellers.map((item) => {
+          {bestSellers.map((item, index) => {
             const { id: metaId, overview, paramether } = item.metadata;
             const name = item.name;
             const unit_amount = item.unit_amount;
@@ -97,6 +97,7 @@ const Products = () => {
             const id = item.id;
             return (
               <Link
+                key={index}
                 href={{
                   pathname: `/products/${item.id}`,
                   query: {

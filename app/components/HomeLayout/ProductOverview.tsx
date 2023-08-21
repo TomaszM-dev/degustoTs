@@ -70,6 +70,7 @@ const ProductOverview = ({ products }: ProductType) => {
         {bestSellers.map((item) => {
           return (
             <motion.div
+              key={item.id}
               className="  min-w-full mx-auto pb-5   rounded-lg transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${curr * 100}%)` }}
             >
@@ -147,6 +148,7 @@ const ProductOverview = ({ products }: ProductType) => {
         <div className="flex items-center justify-center gap-2 ">
           {bestSellers.map((_, i) => (
             <div
+              key={i}
               className={`transition-all w-3 h-3 bg-white rounded-full ${
                 curr === i ? "gradientBg" : ""
               }`}

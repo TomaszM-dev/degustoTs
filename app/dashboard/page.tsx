@@ -18,7 +18,6 @@ export default function Dashboard() {
   const router = useRouter();
   const fetchOrders = async () => {
     const res = await fetch("/api/get-orders");
-
     const data = await res.json();
 
     return data;

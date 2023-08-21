@@ -47,7 +47,7 @@ const Services = () => {
         {data.map((item, index) => {
           return (
             <motion.div
-              key={item.info1}
+              key={index}
               variants={showAnimationVariant}
               className="flex justify-between w-full max-sm:flex-col max-sm:gap-5  max-sm:w-full max-lg:mb-10 relative gap-[20rem] max-lg:gap-20 max-lg:justify-center max-lg:items-center "
             >

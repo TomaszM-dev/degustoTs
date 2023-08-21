@@ -34,9 +34,10 @@ const Testimonials = () => {
       </h2>
       <div className="flex gap-5 mt-20 max-lg:flex-col">
         <div className="flex flex-col gap-5 flex-1">
-          {data.map((item) => {
+          {data.map((item, index) => {
             return (
               <motion.div
+                key={index}
                 initial={"offscreen"}
                 whileInView={"onscreen"}
                 transition={{ staggerChildren: 0.5 }}
@@ -47,6 +48,9 @@ const Testimonials = () => {
                 >
                   <div className="flex justify-between items-center gap-3">
                     <Image
+                      width={400}
+                      height={400}
+                      alt="es"
                       src={team1}
                       className="w-14 h-14 rounded-[50%] object-cover "
                     ></Image>
@@ -69,9 +73,10 @@ const Testimonials = () => {
           })}
         </div>
         <div className="flex-1 flex flex-col gap-5">
-          {data2.map((item) => {
+          {data2.map((item, index) => {
             return (
               <motion.div
+                key={index}
                 initial={"offscreen"}
                 whileInView={"onscreen"}
                 transition={{ staggerChildren: 0.5 }}
@@ -82,6 +87,9 @@ const Testimonials = () => {
                 >
                   <div className="flex justify-between items-center gap-3">
                     <Image
+                      width={400}
+                      height={400}
+                      alt="es"
                       src={team1}
                       className="w-14 h-14 rounded-[50%] object-cover "
                     ></Image>

@@ -7,9 +7,10 @@ import { AiFillShopping } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Cart from "./Cart";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import hamburger from "public/hamburger.png";
 import close from "public/close.png";
+import { Session } from "@prisma/client";
 
 const Nav = ({ user }) => {
   const cartStore = useCartStore();
@@ -60,7 +61,7 @@ const Nav = ({ user }) => {
           onClick={() => cartStore.toggleCart()}
           className="flex items-center text-3xl relative cursor-pointer "
         >
-          <AnimatePresence>
+          <>
             <AiFillShopping className="text-[2.3rem] mb-3 cursor-pointer" />
             {cartStore.cart.length > 0 && (
               <motion.span
@@ -72,7 +73,7 @@ const Nav = ({ user }) => {
                 {cartStore.cart.length}
               </motion.span>
             )}
-          </AnimatePresence>
+          </>
         </div>
         {!user && (
           <Link
@@ -126,7 +127,7 @@ const Nav = ({ user }) => {
           </div>
         )}
       </div>
-      <AnimatePresence>
+      <>
         {activeBar && (
           <motion.div
             animate={{ opacity: 1, x: 0 }}
@@ -170,8 +171,8 @@ const Nav = ({ user }) => {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
-      <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
+      </>
+      <>{cartStore.isOpen && <Cart />}</>
     </div>
   );
 };
