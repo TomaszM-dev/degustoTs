@@ -68,6 +68,7 @@ const ProductOverview = ({ products }: ProductType) => {
       />
       <div className="flex items-center mt-16 overflow-hidden shadow max-w-[75%] relative  mx-auto max-sm:max-w-[100%] ">
         {bestSellers.map((item) => {
+          console.log(item);
           return (
             <motion.div
               key={item.id}

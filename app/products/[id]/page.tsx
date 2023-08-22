@@ -30,6 +30,12 @@ export default function Product({ searchParams }: SearchParamsType) {
     (item) => !item.metadata.id.includes(`${searchParams.metaId}`)
   );
 
+  const name = searchParams.name;
+  const id = searchParams.id;
+  const unit_amount = searchParams.unit_amount;
+  const image = searchParams.image;
+  const quantity = searchParams.quantity;
+
   const accordion = [
     {
       headline: "Overview",
@@ -174,12 +180,26 @@ export default function Product({ searchParams }: SearchParamsType) {
               <p className="text-[1.9rem] self-center gradientText font-[500]">
                 {formatPrice(searchParams.unit_amount)}
               </p>
-              <AddCart
+              <button
+                className="w-[90%] mx-auto mt-5 px-3 py-4 gradientBg btn text-white"
+                onClick={() =>
+                  cartStore.addProduct({
+                    name,
+                    id,
+                    image,
+                    unit_amount,
+                    quantity,
+                  })
+                }
+              >
+                Add
+              </button>
+              {/* <AddCart
                 id={searchParams.id}
                 image={searchParams.image}
                 name={searchParams.name}
                 unit_amount={searchParams.unit_amount}
-              />
+              /> */}
             </div>
           </div>
         </div>
