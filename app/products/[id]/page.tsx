@@ -31,11 +31,13 @@ export default function Product({ searchParams }: SearchParamsType) {
   );
 
   const name = searchParams.name;
+
   const id = searchParams.id;
   const unit_amount = searchParams.unit_amount;
   const image = searchParams.image;
   const quantity = searchParams.quantity;
 
+  console.log(id);
   const accordion = [
     {
       headline: "Overview",
