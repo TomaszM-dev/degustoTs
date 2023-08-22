@@ -173,7 +173,12 @@ export default function Product({ searchParams }: SearchParamsType) {
               <p className="text-[1.9rem] self-center gradientText font-[500]">
                 {formatPrice(searchParams.unit_amount)}
               </p>
-              <AddCart {...searchParams} />
+              <AddCart
+                id={searchParams.id}
+                image={searchParams.image}
+                name={searchParams.name}
+                unit_amount={searchParams.unit_amount}
+              />
             </div>
           </div>
         </div>
