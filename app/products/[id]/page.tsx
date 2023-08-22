@@ -17,7 +17,7 @@ import formatPrice from "@/utils/priceFormat";
 import CartIcon from "@/app/components/CartIcon";
 import { up } from "@/app/components/animations/animations";
 
-export default async function Product({ searchParams }: SearchParamsType) {
+export default function Product({ searchParams }: SearchParamsType) {
   const cartStore = useCartStore();
   const products = cartStore.cartAll;
 

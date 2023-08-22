@@ -17,6 +17,7 @@ const Product = ({
   const { id: metaId, overview, paramether } = metadata;
 
   const queryId = id;
+  console.log(queryId);
 
   return (
     <motion.div
