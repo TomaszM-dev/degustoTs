@@ -32,12 +32,12 @@ export default function Product({ searchParams }: SearchParamsType) {
 
   const name = searchParams.name;
 
-  const id = searchParams.id;
+  const id = searchParams.queryId;
   const unit_amount = searchParams.unit_amount;
   const image = searchParams.image;
   const quantity = searchParams.quantity;
 
-  console.log(id);
+  console.log(id, name);
   const accordion = [
     {
       headline: "Overview",
