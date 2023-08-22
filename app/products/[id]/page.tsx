@@ -20,6 +20,7 @@ import { up } from "@/app/components/animations/animations";
 export default function Product({ searchParams }: SearchParamsType) {
   const cartStore = useCartStore();
   const products = cartStore.cartAll;
+  console.log(searchParams);
 
   const bestSellersVr = products.slice(0, 2);
   const bestSellersAcc = products.slice(4, 6);
