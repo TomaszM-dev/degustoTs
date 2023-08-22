@@ -219,14 +219,14 @@ export default function Product({ searchParams }: SearchParamsType) {
             const description = item.description;
             const image = item.image;
             const id = item.id;
-
+            const queryId = id;
             return (
               <Link
                 key={item.id}
                 href={{
                   pathname: `/products/${item.id}`,
                   query: {
-                    id,
+                    queryId,
                     name,
                     image,
                     unit_amount,

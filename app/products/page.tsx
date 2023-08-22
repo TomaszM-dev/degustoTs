@@ -96,6 +96,7 @@ const Products = () => {
             const description = item.description;
             const image = item.image;
             const id = item.id;
+            const queryId = id;
 
             console.log(id);
             return (
@@ -104,7 +105,7 @@ const Products = () => {
                 href={{
                   pathname: `/products/${item.id}`,
                   query: {
-                    id,
+                    queryId,
                     name,
                     image,
                     unit_amount,
