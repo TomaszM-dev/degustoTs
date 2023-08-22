@@ -17,7 +17,7 @@ import formatPrice from "@/utils/priceFormat";
 import CartIcon from "@/app/components/CartIcon";
 import { up } from "@/app/components/animations/animations";
 
-const Product = ({ searchParams }: SearchParamsType) => {
+export default async function Product({ searchParams }: SearchParamsType) {
   const cartStore = useCartStore();
   const products = cartStore.cartAll;
 
@@ -231,6 +231,4 @@ const Product = ({ searchParams }: SearchParamsType) => {
       </div>
     </div>
   );
-};
-
-export default Product;
+}
