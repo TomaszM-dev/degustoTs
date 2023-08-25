@@ -51,12 +51,12 @@ export default function Dashboard() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <>
+    <div className="h-screen">
       <motion.div
         layout
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mt-20 relative h-[screen]"
+        className="mt-60 relative h-[screen]"
       >
         <motion.div className="flex flex-col items-center mt-20  ">
           <h2 className="text-[3rem] mb-6 font-bold gradientText">
@@ -129,6 +129,6 @@ export default function Dashboard() {
           ))}
         </motion.div>
       </motion.div>
-    </>
+    </div>
   );
 }
