@@ -56,7 +56,7 @@ export default function Dashboard() {
         layout
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="mt-20 relative h-[fit]"
+        className="mt-20 relative h-[screen]"
       >
         <motion.div className="flex flex-col items-center mt-20  ">
           <h2 className="text-[3rem] mb-6 font-bold gradientText">

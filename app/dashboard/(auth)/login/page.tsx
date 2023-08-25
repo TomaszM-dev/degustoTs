@@ -47,9 +47,9 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div className="h-screen">
       {session.status === "unauthenticated" && (
-        <div className=" h-full py-20  max-sm:px-0  max-sm:mt-0 max-sm:flex max-sm:flex-col   ">
+        <div className="  py-20  max-sm:px-0  max-sm:mt-0 max-sm:flex max-sm:flex-col   ">
           <div className=" flex h-full max-sm:mt-20   mt-40 items-center gap-10 justify-center max-lg:mt-48 max-lg:flex-col max-lg:flex-col-reverse">
             <div className="mb-12 w-[70%] md:mb-0 md:w-8/12 lg:w-6/12 max-sm:w-full ">
               <LoginAnimation />
@@ -93,7 +93,6 @@ const Login = () => {
                 <button
                   onClick={() => {
                     signIn("google");
-                    setIsLoading(true);
                   }}
                   className="mb-3 flex w-full items-center justify-center rounded bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] "
                   role="button"
@@ -135,7 +134,7 @@ const Login = () => {
           </motion.div>
         </motion.div>
       )}
-    </>
+    </div>
   );
 };
 
