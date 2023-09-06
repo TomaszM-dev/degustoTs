@@ -67,14 +67,14 @@ const Hero = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
           quis earum quia sunt sint recusandae qui impedit ab consequatur illum!
         </p>
-        <div className="flex items-center gap-6 mt-10">
+        <div className="flex items-center gap-6 mt-10 max-sm:gap-5 max-sm:justify-center">
           <Link
             href="/products"
-            className="  btn gradientBg text-white px-9 py-4 rounded-lg mt-8"
+            className="  btn gradientBg text-white px-9 py-4 rounded-lg mt-8 max-sm:px-7"
           >
             Order Now
           </Link>
-          <button className=" btn bg-main hover:bg-main hover:border-purple border-purple text-white px-9 py-4 rounded-lg mt-8 border-[1px] ">
+          <button className=" btn bg-main hover:bg-main  max-sm:px-7 hover:border-purple border-purple text-white px-9 py-4 rounded-lg mt-8 border-[1px] ">
             More Details
           </button>
         </div>
@@ -83,10 +83,10 @@ const Hero = () => {
         variants={scrollRight}
         whileInView={"show"}
         initial="hidden"
-        className=" relative flex items-center justify-center h-full   w-[30rem] max-lg:mt-20  "
+        className="  relative flex items-center justify-center h-full   w-[30rem] max-lg:mt-20  "
       >
         <Image
-          className="self-end mb-[-1rem] scale-125  rounded-2xl "
+          className="self-end mb-[-1rem] scale-125  max-sm:px-6 rounded-2xl "
           src={gradientMain}
           alt="gradient"
           width={300}
@@ -99,8 +99,8 @@ const Hero = () => {
           height={700}
           src={heroGirl}
         ></Image>
-        <div className="absolute w-[18.6rem] h-[4.6rem] bottom-[-2rem] max-lg:bottom-[-2rem] right-[5.7rem] rounded-2xl blur  scale-125  "></div>
-        <div className="absolute bottom-[-2rem] mb-4 max-lg:mb-4 ml-2 max-lg:ml-18 text-[1.6rem] font-[300] flex items-center justify-center ">
+        <div className="absolute w-[18.6rem] h-[4.6rem] bottom-[-2rem] max-lg:bottom-[-2rem] right-[5.7rem] rounded-2xl blur  scale-125 max-sm:w-[18rem] max-sm:scale-110  max-sm:right-[6rem] max-sm:bottom-[-2.4rem] max-sm:rounded-sm "></div>
+        <div className="absolute bottom-[-2rem] mb-4 max-lg:mb-4 ml-2 max-lg:ml-18 text-[1.6rem] font-[300] flex items-center justify-center max-sm:px-6 ">
           <h3 className="">Explore our Store</h3>
         </div>
       </motion.div>

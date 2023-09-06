@@ -119,13 +119,13 @@ export default function Product({ searchParams }: SearchParamsType) {
               width={300}
               height={300}
               alt="product detail"
-              className="relative w-[21rem] pl-5 max-lg:pl-0"
+              className="relative w-[21rem] pl-5 max-lg:pl-0 max-sm:w-[17rem]"
             ></Image>
           </div>
           <div className="flex flex-col p-5  flex-1  items-start ">
             <AiFillShopping className="text-[2.2rem] mr-5  self-end  max-lg:hidden" />
             <div className="w-[100%]">
-              <motion.div className="mt-10 max-lg:mb-20 w-[70%] mx-auto max-sm:w-[95%]   h-[20rem]">
+              <motion.div className="mt-10 max-lg:mb-20 max-sm:mb-10 w-[70%] mx-auto max-sm:w-[95%]   h-[20rem]">
                 {accordion.map((item, i) => {
                   const { headline, info } = item;
                   return (
@@ -208,7 +208,7 @@ export default function Product({ searchParams }: SearchParamsType) {
       </motion.div>
       <div className="flex flex-col mt-40 ">
         <div className="w-[100%] mx-auto h-2 gradientBg  rounded-lg"></div>
-        <h3 className="mt-5 text-[2.3rem]">
+        <h3 className="mt-5 text-[2.3rem] max-sm:text-center">
           Fits <span className="gradientText"> well with</span>
         </h3>
         <div className="mt-16 grid grid-cols-bestS gap-7  p-1">

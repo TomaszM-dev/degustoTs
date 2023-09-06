@@ -19,7 +19,7 @@ const Nav = ({ user }) => {
   const [activeBar, setActiveBar] = useState(false);
 
   return (
-    <div className="flex items-center pt-8  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 max-lg:px-10 mx-auto border-b-2 border-purple bg-main ">
+    <div className="flex items-center pt-8 max-sm:px-4  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 max-lg:px-10 mx-auto border-b-2 border-purple bg-main ">
       <h1 className="gradientText text-[2rem] max-lg:text-[1.7rem] font-[400]  ">
         <Link href="/" className="">
           DegustoVR
@@ -128,49 +128,51 @@ const Nav = ({ user }) => {
         )}
       </div>
       <>
-        {activeBar && (
-          <motion.div
-            animate={{ opacity: 1, x: 0 }}
-            initial={{ opacity: 0, x: 100 }}
-            exit={{ opacity: 0, x: 100 }}
-            className="fixed w-full    h-screen left-0 top-0  bg-opacity-[0.40]"
-            onClick={() => setActiveBar(!activeBar)}
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className=" bg-main shadow absolute right-0 top-0 w-[20rem] h-screen  overflow-scroll flex flex-col items-center gap-5 bg-opacity-[0.98]  max-sm:w-[100%] "
+        <AnimatePresence>
+          {activeBar && (
+            <motion.div
+              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 100 }}
+              exit={{ opacity: 0, x: 100 }}
+              className="fixed w-full    h-screen left-0 top-0  bg-opacity-[0.40]"
+              onClick={() => setActiveBar(!activeBar)}
             >
               <div
-                onClick={() => setActiveBar(!activeBar)}
-                className=" right-0 self-end text-[1.9rem] cursor-pointer gradientText p-10 "
+                onClick={(e) => e.stopPropagation()}
+                className=" bg-main shadow absolute right-0 top-0 w-[20rem] h-screen  overflow-scroll flex flex-col items-center gap-5 bg-opacity-[0.98]  max-sm:w-[100%] "
               >
-                X
-              </div>
-
-              <div className="flex flex-col items-center gap-8 mt-20 ">
-                <Link
+                <div
                   onClick={() => setActiveBar(!activeBar)}
-                  className={`text-[1.7rem] border-b-[1px] border-purple ${
-                    pathname === "/" ? "gradientText" : ""
-                  }`}
-                  href="/"
+                  className=" right-0 self-end text-[1.9rem] cursor-pointer gradientText p-10 "
                 >
-                  Home
-                </Link>
+                  X
+                </div>
 
-                <Link
-                  onClick={() => setActiveBar(!activeBar)}
-                  className={`text-[1.7rem] border-b-[1px] border-purple ${
-                    pathname === "/products" ? "gradientText" : ""
-                  }`}
-                  href="/products"
-                >
-                  Products
-                </Link>
+                <div className="flex flex-col items-center gap-8 mt-20 ">
+                  <Link
+                    onClick={() => setActiveBar(!activeBar)}
+                    className={`text-[1.7rem] border-b-[1px] border-purple ${
+                      pathname === "/" ? "gradientText" : ""
+                    }`}
+                    href="/"
+                  >
+                    Home
+                  </Link>
+
+                  <Link
+                    onClick={() => setActiveBar(!activeBar)}
+                    className={`text-[1.7rem] border-b-[1px] border-purple ${
+                      pathname === "/products" ? "gradientText" : ""
+                    }`}
+                    href="/products"
+                  >
+                    Products
+                  </Link>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </>
       <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
     </div>
