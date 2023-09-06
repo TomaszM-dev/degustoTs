@@ -94,7 +94,7 @@ const ProductOverview = ({ products }: ProductType) => {
                     alt=""
                     width={400}
                     height={400}
-                    className="max-lg:scale-125 relative w-[18rem] h-[18rem] ml-14 max-lg:ml-0 max-sm:w-[14rem] max-sm:h-[14rem]"
+                    className="max-sm:ml-5 max-lg:scale-125 relative w-[18rem] h-[18rem] ml-14 max-lg:ml-0 max-sm:w-[14rem] max-sm:h-[14rem]"
                   ></Image>
                 </div>
                 <div className="flex  flex-col p-5  flex-1  items-center  max-lg:w-full max-lg:items-center justify-center">
@@ -128,8 +128,8 @@ const ProductOverview = ({ products }: ProductType) => {
                       <div className="w-[70%] h-1 gradientBg rounded-lg mt-1"></div>
                     </div>
                   </div>
-                  <div className="mt-10 flex flex-col  w-[60%] max-sm:w-[80%]">
-                    <p className="text-[1.9rem]  gradientText font-[500]">
+                  <div className="mt-10 flex flex-col  w-[60%] max-sm:w-[80%] max-sm:items-center">
+                    <p className="text-[1.9rem]   gradientText font-[500]">
                       {formatPrice(item.unit_amount as number)}
                     </p>
                     <AddCart
