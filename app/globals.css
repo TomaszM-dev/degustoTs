@@ -32,7 +32,7 @@ a {
 
 .container {
   max-width: 1366px;
-
+  width: 100vw;
   margin: auto;
   padding: 0 6rem;
   display: flex;
