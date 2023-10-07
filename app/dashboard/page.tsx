@@ -51,7 +51,7 @@ export default function Dashboard() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className="h-screen">
+    <div className="">
       <motion.div
         layout
         initial={{ opacity: 0, scale: 0 }}

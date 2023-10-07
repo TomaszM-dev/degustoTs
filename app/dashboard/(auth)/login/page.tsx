@@ -27,8 +27,6 @@ const Login = () => {
     const email = e.target[0].value;
     const password = e.target[1].value;
 
-    // signIn("credentials", { email, password , redirect: false});
-
     signIn("credentials", { email, password, redirect: false }).then(
       ({ error }: any) => {
         console.log(error);
@@ -61,7 +59,7 @@ const Login = () => {
                   <input
                     type="text"
                     className=" w-full bg-main py-4 focus:outline-none shadow-sm shadow-purple  px-5"
-                    placeholder="Email"
+                    placeholder="FOR TESTING:  admin@gmail.com"
                     required
                   />
                 </div>
@@ -70,7 +68,7 @@ const Login = () => {
                   <input
                     type="password"
                     className="  w-full bg-main py-4 focus:outline-none shadow-sm shadow-purple  px-5"
-                    placeholder="Password"
+                    placeholder="FOR TESTING: admin"
                     required
                   />
                 </div>
