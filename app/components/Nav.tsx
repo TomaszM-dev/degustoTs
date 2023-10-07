@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useCartStore } from "@/store";
@@ -11,15 +11,37 @@ import { motion, AnimatePresence } from "framer-motion";
 import hamburger from "public/hamburger.png";
 import close from "public/close.png";
 import { Session } from "@prisma/client";
+import { BiLogIn } from "react-icons/bi";
 
-const Nav = ({ user }) => {
+const Nav = ({ user }: any) => {
   const cartStore = useCartStore();
   const pathname = usePathname();
   const session = useSession();
   const [activeBar, setActiveBar] = useState(false);
+  const [sticky, setSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setSticky(true);
+      } else {
+        setSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   return (
-    <div className="flex items-center pt-8 max-sm:px-4  z-[100] top-0 left-0  justify-between fixed w-[100%] px-20 max-lg:px-10 mx-auto border-b-2 border-purple bg-main ">
+    <div
+      className={`flex items-center pt-8 max-sm:px-4  z-[100] top-0 left-0  justify-between border-purple duration-100 fixed w-[100%] px-20 max-lg:px-10 mx-auto  bg-main  ${
+        sticky ? "   border-b-[1px] border-purple pb-4" : ""
+      }`}
+    >
       <h1 className="gradientText text-[2rem] max-lg:text-[1.7rem] font-[400]  ">
         <Link href="/" className="">
           DegustoVR
@@ -76,12 +98,20 @@ const Nav = ({ user }) => {
           </>
         </div>
         {!user && (
-          <Link
-            className="gradientBg px-6 py-2 rounded-lg  mb-4"
-            href="/dashboard/login"
-          >
-            Sign Up
-          </Link>
+          <>
+            <Link
+              className="gradientBg max-sm:hidden px-6 py-2 rounded-lg  mb-4"
+              href="/dashboard/login"
+            >
+              Sign Up
+            </Link>
+            <Link
+              className="  md:hidden rounded-lg  text-[2.4rem] mb-2"
+              href="/dashboard/login"
+            >
+              <BiLogIn />
+            </Link>
+          </>
         )}
         {user && (
           <div className="dropdown dropdown-end cursor-pointer ">

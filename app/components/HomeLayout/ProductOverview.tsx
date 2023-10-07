@@ -98,7 +98,6 @@ const ProductOverview = ({ products }: ProductType) => {
                   ></Image>
                 </div>
                 <div className="flex  flex-col p-5  flex-1  items-center  max-lg:w-full max-lg:items-center justify-center">
-                  {/* <CartIcon id={item.id} /> */}
                   <AiFillShopping
                     className={`text-[2.2rem]  mr-5  self-end max-lg:hidden  ${cartStore.cart.map(
                       (es) => (es.id === item.id ? "text-purple" : "text-white")
@@ -150,6 +149,9 @@ const ProductOverview = ({ products }: ProductType) => {
         <div className="flex items-center justify-center gap-2 ">
           {bestSellers.map((_, i) => (
             <div
+              onClick={() => {
+                setCurr(i);
+              }}
               key={i}
               className={`transition-all w-3 h-3 bg-white rounded-full ${
                 curr === i ? "gradientBg" : ""
